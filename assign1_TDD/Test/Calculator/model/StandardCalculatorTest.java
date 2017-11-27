@@ -48,6 +48,15 @@ public class StandardCalculatorTest {
 			assertTrue(printTip(expected, actual), doublecomparision(expected, actual));
 		}
 	}
+	
+	@Test
+	public void divide_RandomTowNumber_ReturnDivide() {
+		for (int i = 0; i < 100; i++) {
+			double actual = sut.divide(doubleArray1[i], doubleArray2[i]);
+			double expected = doubleArray1[i] / doubleArray2[i];
+			assertTrue(printTip(expected, actual), doublecomparision(expected, actual));
+		}
+	}
 
 	private boolean doublecomparision(double expected, double actual) {
 		double c = expected - actual;
