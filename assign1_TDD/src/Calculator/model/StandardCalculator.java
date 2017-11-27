@@ -7,7 +7,7 @@ public class StandardCalculator {
 	}
 	
 	public double subtract (double A, double B) {
-		return 0;
+		return A-B;
 	}
 
 }
