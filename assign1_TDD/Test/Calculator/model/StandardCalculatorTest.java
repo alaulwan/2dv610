@@ -9,8 +9,8 @@ import org.junit.Test;
 
 public class StandardCalculatorTest {
 	private StandardCalculator sut;
-	private double[] doubleArray1 = new double[100], doubleArray2 = new double[100], actualArray = new double[100],
-			expectedArray = new double[100];
+	private double[] doubleArray1 = new double[100]; 
+	private double[] doubleArray2 = new double[100]; 
 
 	@Before
 	public void setUp() throws Exception {
@@ -23,20 +23,29 @@ public class StandardCalculatorTest {
 	}
 
 	@Test
-	public void sumTestReturnSumOfTwoNumber() {
+	public void sum_RandomTowNumber_ReturnSum() {
 		for (int i = 0; i < 100; i++) {
-			actualArray[i] = sut.sum(doubleArray1[i], doubleArray2[i]);
-			expectedArray[i] = doubleArray1[i] + doubleArray2[i];
-			assertTrue(printTip(expectedArray[i], actualArray[i]), doublecomparision(expectedArray[i], actualArray[i]));
+			double actual = sut.sum(doubleArray1[i], doubleArray2[i]);
+			double expected = doubleArray1[i] + doubleArray2[i];
+			assertTrue(printTip(expected, actual), doublecomparision(expected, actual));
 		}
 	}
 
 	@Test
-	public void subtractTestReturnSubtractOfTwoNumber() {
+	public void subtract_RandomTowNumber_ReturnSubtract() {
 		for (int i = 0; i < 100; i++) {
-			actualArray[i] = sut.subtract(doubleArray1[i], doubleArray2[i]);
-			expectedArray[i] = doubleArray1[i] - doubleArray2[i];
-			assertTrue(printTip(expectedArray[i], actualArray[i]), doublecomparision(expectedArray[i], actualArray[i]));
+			double actual = sut.subtract(doubleArray1[i], doubleArray2[i]);
+			double expected = doubleArray1[i] - doubleArray2[i];
+			assertTrue(printTip(expected, actual), doublecomparision(expected, actual));
+		}
+	}
+	
+	@Test
+	public void mul_RandomTowNumber_ReturnMultiplication() {
+		for (int i = 0; i < 100; i++) {
+			double actual = sut.mul(doubleArray1[i], doubleArray2[i]);
+			double expected = doubleArray1[i] * doubleArray2[i];
+			assertTrue(printTip(expected, actual), doublecomparision(expected, actual));
 		}
 	}
 
@@ -44,7 +53,6 @@ public class StandardCalculatorTest {
 		double c = expected - actual;
 		if (c < 0)
 			c = -c;
-		// print (expected, actual);
 		return c < 0.000000000000000000001;
 	}
 
