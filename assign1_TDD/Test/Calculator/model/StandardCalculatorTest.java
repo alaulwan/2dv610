@@ -9,8 +9,8 @@ import org.junit.Test;
 
 public class StandardCalculatorTest {
 	private StandardCalculator sut;
-	private double[] doubleArray1 = new double[100]; 
-	private double[] doubleArray2 = new double[100]; 
+	private double[] doubleArray1 = new double[100];
+	private double[] doubleArray2 = new double[100];
 
 	@Before
 	public void setUp() throws Exception {
@@ -39,7 +39,7 @@ public class StandardCalculatorTest {
 			assertTrue(printTip(expected, actual), doublecomparision(expected, actual));
 		}
 	}
-	
+
 	@Test
 	public void mul_RandomTowNumber_ReturnMultiplication() {
 		for (int i = 0; i < 100; i++) {
