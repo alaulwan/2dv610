@@ -2,8 +2,8 @@ package Calculator.model;
 
 public class StandardCalculator {
 
-	public double sum(double A, double B) {
-		return A+B;
+	public double sum(double number1, double number2) {
+		return number1 + number2;
 	}
 
 }
