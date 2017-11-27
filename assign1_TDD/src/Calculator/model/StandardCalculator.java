@@ -11,7 +11,7 @@ public class StandardCalculator {
 	}
 	
 	public double mul (double A, double B) {
-		return 0;
+		return A*B;
 	}
 
 }
