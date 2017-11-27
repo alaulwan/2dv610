@@ -48,7 +48,7 @@ public class StandardCalculatorTest {
 			assertTrue(printTip(expected, actual), doublecomparision(expected, actual));
 		}
 	}
-	
+
 	@Test
 	public void divide_RandomTowNumber_ReturnDivide() {
 		for (int i = 0; i < 100; i++) {
