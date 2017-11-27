@@ -27,7 +27,16 @@ public class StandardCalculatorTest {
 		for (int i = 0; i < 100; i++) {
 			actualArray[i] = sut.sum(doubleArray1[i], doubleArray2[i]);
 			expectedArray[i] = doubleArray1[i] + doubleArray2[i];
-			assertTrue(print(expectedArray[i], actualArray[i]), doublecomparision(expectedArray[i], actualArray[i]));
+			assertTrue(printTip(expectedArray[i], actualArray[i]), doublecomparision(expectedArray[i], actualArray[i]));
+		}
+	}
+
+	@Test
+	public void subtractTestReturnSubtractOfTwoNumber() {
+		for (int i = 0; i < 100; i++) {
+			actualArray[i] = sut.subtract(doubleArray1[i], doubleArray2[i]);
+			expectedArray[i] = doubleArray1[i] - doubleArray2[i];
+			assertTrue(printTip(expectedArray[i], actualArray[i]), doublecomparision(expectedArray[i], actualArray[i]));
 		}
 	}
 
@@ -39,7 +48,7 @@ public class StandardCalculatorTest {
 		return c < 0.000000000000000000001;
 	}
 
-	private String print(double expected, double actual) {
+	private String printTip(double expected, double actual) {
 		return "Expected: " + expected + " , Actual: " + actual;
 	}
 
