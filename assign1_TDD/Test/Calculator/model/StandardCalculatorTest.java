@@ -72,6 +72,11 @@ public class StandardCalculatorTest {
 		}
 	}
 
+	@Test(expected = IllegalArgumentException.class)
+	public void mod_ZeroDivisor_ThrowExeption() {
+		sut.mod(5, 0);
+	}
+
 	private boolean doublecomparision(double expected, double actual) {
 		double c = expected - actual;
 		if (c < 0)
