@@ -62,7 +62,7 @@ public class StandardCalculatorTest {
 	public void divide_ZeroDivisor_ThrowExeption() {
 		sut.divide(5, 0);
 	}
-	
+
 	@Test
 	public void mod_RandomTowNumber_ReturnModule() {
 		for (int i = 0; i < 100; i++) {
