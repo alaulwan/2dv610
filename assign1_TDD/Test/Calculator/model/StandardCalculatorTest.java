@@ -57,7 +57,7 @@ public class StandardCalculatorTest {
 			assertTrue(printTip(expected, actual), doublecomparision(expected, actual));
 		}
 	}
-	
+
 	@Test(expected = IllegalArgumentException.class)
 	public void divide_ZeroDivisor_ThrowExeption() {
 		sut.divide(5, 0);

@@ -18,6 +18,6 @@ public class StandardCalculator {
 		if (number2 != 0) {
 			return number1 / number2;
 		}
-		throw new IllegalArgumentException();
+		throw new IllegalArgumentException("Number2 'divisor' is 0");
 	}
 }
