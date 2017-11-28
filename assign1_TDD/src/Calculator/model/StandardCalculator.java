@@ -22,6 +22,10 @@ public class StandardCalculator {
 	}
 	
 	public double mod (double A, double B) {
-		return 0; 
+		if (B!=0) {
+			return A%B;
+		}
+		return Double.MIN_VALUE;
+		 
 	}
 }
