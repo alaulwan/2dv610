@@ -26,6 +26,5 @@ public class StandardCalculator {
 			return number1 % number2;
 		}
 		throw new IllegalArgumentException("Number2 'divisor' is 0");
-
 	}
 }
