@@ -20,4 +20,8 @@ public class StandardCalculator {
 		}
 		throw new IllegalArgumentException("Number2 'divisor' is 0");
 	}
+	
+	public double mod (double A, double B) {
+		return 0; 
+	}
 }
