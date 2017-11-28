@@ -20,5 +20,4 @@ public class StandardCalculator {
 		}
 		return Double.MIN_VALUE;
 	}
-
 }
