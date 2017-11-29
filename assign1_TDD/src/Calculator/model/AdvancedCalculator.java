@@ -1,9 +1,9 @@
 package Calculator.model;
 
 public class AdvancedCalculator {
-	
-	public double squareRoot (double A)  {
-		return Math.sqrt(A);
+
+	public double squareRoot(double positiveNumber) {
+		return Math.sqrt(positiveNumber);
 	}
 
 }
