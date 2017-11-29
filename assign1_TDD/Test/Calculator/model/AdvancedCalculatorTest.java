@@ -36,6 +36,11 @@ public class AdvancedCalculatorTest {
 			assertTrue(printTip(expected, actual), doublecomparision(expected, actual));
 		}
 	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void squareRoot_negativeNumber_ThrowExeption() {
+		sut.squareRoot(-5);
+	}
 
 	private boolean doublecomparision(double expected, double actual) {
 		double c = expected - actual;
