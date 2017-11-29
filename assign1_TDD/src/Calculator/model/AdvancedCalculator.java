@@ -8,5 +8,9 @@ public class AdvancedCalculator {
 		}
 		throw new IllegalArgumentException("Can not Square Root a negative number");
 	}
+	
+	public double power (double A, double B){
+		return 0;
+	}
 
 }

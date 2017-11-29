@@ -41,6 +41,15 @@ public class AdvancedCalculatorTest {
 	public void squareRoot_negativeNumber_ThrowExeption() {
 		sut.squareRoot(-5);
 	}
+	
+	@Test
+	public void power_RandomTowNumber_ReturnNum1PowNum2() {
+		for (int i = 0; i < 100; i++) {
+			double actual = sut.power(doubleArray1[i], doubleArray2[i]);
+			double expected = Math.pow(doubleArray1[i] , doubleArray2[i]);
+			assertTrue(printTip(expected, actual), doublecomparision(expected, actual));
+		}
+	}
 
 	private boolean doublecomparision(double expected, double actual) {
 		double c = expected - actual;
