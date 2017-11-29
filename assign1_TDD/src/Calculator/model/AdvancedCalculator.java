@@ -10,7 +10,7 @@ public class AdvancedCalculator {
 	}
 	
 	public double power (double A, double B){
-		return 0;
+		return Math.pow(A, B);
 	}
 
 }
