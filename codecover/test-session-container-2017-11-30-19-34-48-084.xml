@@ -1,0 +1,504 @@
+<?xml version="1.0" encoding="UTF-8"?><TestSessionContainer xmlns="http://www.codecover.org/xml/testsession-container" Date="1512066888080" TestSessionContainerId="51fce836-1ee6-440d-8fb9-2b1d7757947f" version="1.0">
+<SrcFileList>
+<SrcFile Content="package Calculator.model;&#13;&#10;&#13;&#10;public class AdvancedCalculator {&#13;&#10;&#13;&#10;&#9;public double squareRoot(double positiveNumber) {&#13;&#10;&#9;&#9;if (positiveNumber &gt;= 0) {&#13;&#10;&#9;&#9;&#9;return Math.sqrt(positiveNumber);&#13;&#10;&#9;&#9;}&#13;&#10;&#9;&#9;throw new IllegalArgumentException(&quot;Can not Square Root a negative number&quot;);&#13;&#10;&#9;}&#13;&#10;&#13;&#10;&#9;public double power(double number, double exponent) {&#13;&#10;&#9;&#9;return Math.pow(number, exponent);&#13;&#10;&#9;}&#13;&#10;&#13;&#10;}&#13;&#10;" Filename="AdvancedCalculator.java" Intrnl_Id="1"/>
+<SrcFile Content="package Calculator.model;&#13;&#10;&#13;&#10;public class Equation {&#13;&#10;&#9;double a, b, c;&#13;&#10;&#13;&#10;&#9;public Equation(double a, double b, double c) {&#13;&#10;&#9;&#9;this.a = a;&#13;&#10;&#9;&#9;this.b = b;&#13;&#10;&#9;&#9;this.c = c;&#13;&#10;&#9;}&#13;&#10;&#13;&#10;&#9;public double getA() {&#13;&#10;&#9;&#9;return a;&#13;&#10;&#9;}&#13;&#10;&#13;&#10;&#9;public double getB() {&#13;&#10;&#9;&#9;return b;&#13;&#10;&#9;}&#13;&#10;&#13;&#10;&#9;public double getC() {&#13;&#10;&#9;&#9;return c;&#13;&#10;&#9;}&#13;&#10;&#13;&#10;}&#13;&#10;" Filename="Equation.java" Intrnl_Id="2"/>
+<SrcFile Content="package Calculator.model;&#13;&#10;&#13;&#10;import Calculator.model.exeption.NonQuadraticEquatioException;&#13;&#10;&#13;&#10;public class EquationDiscriminantCalculator {&#13;&#10;&#9;double a, b, c;&#13;&#10;&#13;&#10;&#9;public EquationDiscriminantCalculator(Equation equation) {&#13;&#10;&#9;&#9;a = equation.getA();&#13;&#10;&#9;&#9;b = equation.getB();&#13;&#10;&#9;&#9;c = equation.getC();&#13;&#10;&#9;}&#13;&#10;&#13;&#10;&#9;public double getDiscriminant() throws NonQuadraticEquatioException {&#13;&#10;&#9;&#9;if (a == 0) {&#13;&#10;&#9;&#9;&#9;throw new NonQuadraticEquatioException();&#13;&#10;&#9;&#9;}&#13;&#10;&#9;&#9;StandardCalculator SC = new StandardCalculator();&#13;&#10;&#9;&#9;AdvancedCalculator AC = new AdvancedCalculator();&#13;&#10;&#9;&#9;double A_mul_C = SC.mul(a, c);&#13;&#10;&#9;&#9;return AC.power(b, 2) - SC.mul(4, A_mul_C);&#13;&#10;&#9;}&#13;&#10;}&#13;&#10;" Filename="EquationDiscriminantCalculator.java" Intrnl_Id="3"/>
+<SrcFile Content="package Calculator.model;&#13;&#10;&#13;&#10;public class StandardCalculator {&#13;&#10;&#13;&#10;&#9;public double sum(double number1, double number2) {&#13;&#10;&#9;&#9;return number1 + number2;&#13;&#10;&#9;}&#13;&#10;&#13;&#10;&#9;public double subtract(double number1, double number2) {&#13;&#10;&#9;&#9;return number1 - number2;&#13;&#10;&#9;}&#13;&#10;&#13;&#10;&#9;public double mul(double number1, double number2) {&#13;&#10;&#9;&#9;return number1 * number2;&#13;&#10;&#9;}&#13;&#10;&#13;&#10;&#9;public double divide(double number1, double number2) {&#13;&#10;&#9;&#9;if (number2 != 0) {&#13;&#10;&#9;&#9;&#9;return number1 / number2;&#13;&#10;&#9;&#9;}&#13;&#10;&#9;&#9;throw new IllegalArgumentException(&quot;Number2 'divisor' is 0&quot;);&#13;&#10;&#9;}&#13;&#10;&#13;&#10;&#9;public double mod(double number1, double number2) {&#13;&#10;&#9;&#9;if (number2 != 0) {&#13;&#10;&#9;&#9;&#9;return number1 % number2;&#13;&#10;&#9;&#9;}&#13;&#10;&#9;&#9;throw new IllegalArgumentException(&quot;Number2 'divisor' is 0&quot;);&#13;&#10;&#9;}&#13;&#10;}&#13;&#10;" Filename="StandardCalculator.java" Intrnl_Id="4"/>
+<SrcFile Content="package Calculator.model.exeption;&#13;&#10;&#13;&#10;public class NonQuadraticEquatioException extends Exception {&#13;&#10;&#13;&#10;}&#13;&#10;" Filename="NonQuadraticEquatioException.java" Intrnl_Id="5"/>
+</SrcFileList>
+<CritList>
+<CritListEntry Name="org.codecover.model.utils.criteria.LoopCoverage" PluginName="org.codecover"/>
+<CritListEntry Name="org.codecover.model.utils.criteria.ConditionCoverage" PluginName="org.codecover"/>
+<CritListEntry Name="org.codecover.model.utils.criteria.BranchCoverage" PluginName="org.codecover"/>
+<CritListEntry Name="org.codecover.model.utils.criteria.StatementCoverage" PluginName="org.codecover"/>
+</CritList>
+<BoolOpList/>
+<HierarchyLvlTypeList>
+<HierarchyLvlType EnglishName="package" IntrnlName="package" Intrnl_Id="6"/>
+<HierarchyLvlType EnglishName="method" IntrnlName="method" Intrnl_Id="7"/>
+<HierarchyLvlType EnglishName="class" IntrnlName="class" Intrnl_Id="8"/>
+<HierarchyLvlType EnglishName="default package" IntrnlName="default package" Intrnl_Id="9"/>
+</HierarchyLvlTypeList>
+<MASTRoot>
+<HierarchyLvl HierarchyLvlId="364" HierarchyLvlTypeId="9" Intrnl_Id="10" Name="default package">
+<Header/>
+<LocList/>
+<HierarchyLvl HierarchyLvlId="363" HierarchyLvlTypeId="6" Intrnl_Id="11" Name="Calculator">
+<Header/>
+<LocList/>
+<HierarchyLvl HierarchyLvlId="362" HierarchyLvlTypeId="6" Intrnl_Id="12" Name="model">
+<Header/>
+<LocList/>
+<HierarchyLvl HierarchyLvlId="361" HierarchyLvlTypeId="6" Intrnl_Id="13" Name="exeption">
+<Header/>
+<LocList/>
+<HierarchyLvl HierarchyLvlId="360" HierarchyLvlTypeId="8" Intrnl_Id="14" Name="NonQuadraticEquatioException">
+<Header>
+<Loc EndOffset="97" SrcFileId="5" StartOffset="38"/>
+</Header>
+<LocList>
+<Loc EndOffset="104" SrcFileId="5" StartOffset="38"/>
+</LocList>
+</HierarchyLvl>
+</HierarchyLvl>
+<HierarchyLvl HierarchyLvlId="345" HierarchyLvlTypeId="8" Intrnl_Id="15" Name="AdvancedCalculator">
+<Header>
+<Loc EndOffset="60" SrcFileId="1" StartOffset="29"/>
+</Header>
+<LocList>
+<Loc EndOffset="378" SrcFileId="1" StartOffset="29"/>
+</LocList>
+<HierarchyLvl HierarchyLvlId="343" HierarchyLvlTypeId="7" Intrnl_Id="16" Name="squareRoot">
+<Header>
+<Loc EndOffset="114" SrcFileId="1" StartOffset="67"/>
+</Header>
+<LocList>
+<Loc EndOffset="273" SrcFileId="1" StartOffset="67"/>
+</LocList>
+<StmntSeq Intrnl_Id="17">
+<LocList>
+<Loc EndOffset="189" SrcFileId="1" StartOffset="120"/>
+<Loc EndOffset="269" SrcFileId="1" StartOffset="193"/>
+</LocList>
+<CondStmnt CovItemId="S1" CovItemPrefix="Calculator.model.AdvancedCalculator.java" Intrnl_Id="18">
+<Branch CovItemId="B1" CovItemPrefix="Calculator.model.AdvancedCalculator.java" Implct="false" Intrnl_Id="19">
+<Cond/>
+<LocList>
+<Loc EndOffset="189" SrcFileId="1" StartOffset="145"/>
+</LocList>
+<StmntSeq Intrnl_Id="20">
+<LocList>
+<Loc EndOffset="184" SrcFileId="1" StartOffset="151"/>
+</LocList>
+<BasicStmnt CovItemId="S2" CovItemPrefix="Calculator.model.AdvancedCalculator.java" Intrnl_Id="21">
+<LocList>
+<Loc EndOffset="184" SrcFileId="1" StartOffset="151"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</Branch>
+<Branch CovItemId="B2" CovItemPrefix="Calculator.model.AdvancedCalculator.java" Implct="true" Intrnl_Id="22">
+<Cond/>
+<LocList/>
+<StmntSeq Intrnl_Id="23">
+<LocList/>
+</StmntSeq>
+</Branch>
+<Keyword EndOffset="122" SrcFileId="1" StartOffset="120"/>
+<LocList>
+<Loc EndOffset="189" SrcFileId="1" StartOffset="120"/>
+</LocList>
+<RootTerm CovItemId="C1" CovItemPrefix="Calculator.model.AdvancedCalculator.java" Intrnl_Id="24">
+<BasicBoolTerm Intrnl_Id="25">
+<LocList>
+<Loc EndOffset="143" SrcFileId="1" StartOffset="124"/>
+</LocList>
+</BasicBoolTerm>
+</RootTerm>
+</CondStmnt>
+<BasicStmnt CovItemId="S3" CovItemPrefix="Calculator.model.AdvancedCalculator.java" Intrnl_Id="26">
+<LocList>
+<Loc EndOffset="269" SrcFileId="1" StartOffset="193"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</HierarchyLvl>
+<HierarchyLvl HierarchyLvlId="344" HierarchyLvlTypeId="7" Intrnl_Id="27" Name="power">
+<Header>
+<Loc EndOffset="329" SrcFileId="1" StartOffset="278"/>
+</Header>
+<LocList>
+<Loc EndOffset="373" SrcFileId="1" StartOffset="278"/>
+</LocList>
+<StmntSeq Intrnl_Id="28">
+<LocList>
+<Loc EndOffset="369" SrcFileId="1" StartOffset="335"/>
+</LocList>
+<BasicStmnt CovItemId="S4" CovItemPrefix="Calculator.model.AdvancedCalculator.java" Intrnl_Id="29">
+<LocList>
+<Loc EndOffset="369" SrcFileId="1" StartOffset="335"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</HierarchyLvl>
+</HierarchyLvl>
+<HierarchyLvl HierarchyLvlId="350" HierarchyLvlTypeId="8" Intrnl_Id="30" Name="Equation">
+<Header>
+<Loc EndOffset="50" SrcFileId="2" StartOffset="29"/>
+</Header>
+<LocList>
+<Loc EndOffset="308" SrcFileId="2" StartOffset="29"/>
+</LocList>
+<HierarchyLvl HierarchyLvlId="346" HierarchyLvlTypeId="7" Intrnl_Id="31" Name="Equation">
+<Header>
+<Loc EndOffset="120" SrcFileId="2" StartOffset="75"/>
+</Header>
+<LocList>
+<Loc EndOffset="171" SrcFileId="2" StartOffset="75"/>
+</LocList>
+<StmntSeq Intrnl_Id="32">
+<LocList>
+<Loc EndOffset="137" SrcFileId="2" StartOffset="126"/>
+<Loc EndOffset="152" SrcFileId="2" StartOffset="141"/>
+<Loc EndOffset="167" SrcFileId="2" StartOffset="156"/>
+</LocList>
+<BasicStmnt CovItemId="S1" CovItemPrefix="Calculator.model.Equation.java" Intrnl_Id="33">
+<LocList>
+<Loc EndOffset="137" SrcFileId="2" StartOffset="126"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S2" CovItemPrefix="Calculator.model.Equation.java" Intrnl_Id="34">
+<LocList>
+<Loc EndOffset="152" SrcFileId="2" StartOffset="141"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S3" CovItemPrefix="Calculator.model.Equation.java" Intrnl_Id="35">
+<LocList>
+<Loc EndOffset="167" SrcFileId="2" StartOffset="156"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</HierarchyLvl>
+<HierarchyLvl HierarchyLvlId="347" HierarchyLvlTypeId="7" Intrnl_Id="36" Name="getA">
+<Header>
+<Loc EndOffset="196" SrcFileId="2" StartOffset="176"/>
+</Header>
+<LocList>
+<Loc EndOffset="215" SrcFileId="2" StartOffset="176"/>
+</LocList>
+<StmntSeq Intrnl_Id="37">
+<LocList>
+<Loc EndOffset="211" SrcFileId="2" StartOffset="202"/>
+</LocList>
+<BasicStmnt CovItemId="S4" CovItemPrefix="Calculator.model.Equation.java" Intrnl_Id="38">
+<LocList>
+<Loc EndOffset="211" SrcFileId="2" StartOffset="202"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</HierarchyLvl>
+<HierarchyLvl HierarchyLvlId="348" HierarchyLvlTypeId="7" Intrnl_Id="39" Name="getB">
+<Header>
+<Loc EndOffset="240" SrcFileId="2" StartOffset="220"/>
+</Header>
+<LocList>
+<Loc EndOffset="259" SrcFileId="2" StartOffset="220"/>
+</LocList>
+<StmntSeq Intrnl_Id="40">
+<LocList>
+<Loc EndOffset="255" SrcFileId="2" StartOffset="246"/>
+</LocList>
+<BasicStmnt CovItemId="S5" CovItemPrefix="Calculator.model.Equation.java" Intrnl_Id="41">
+<LocList>
+<Loc EndOffset="255" SrcFileId="2" StartOffset="246"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</HierarchyLvl>
+<HierarchyLvl HierarchyLvlId="349" HierarchyLvlTypeId="7" Intrnl_Id="42" Name="getC">
+<Header>
+<Loc EndOffset="284" SrcFileId="2" StartOffset="264"/>
+</Header>
+<LocList>
+<Loc EndOffset="303" SrcFileId="2" StartOffset="264"/>
+</LocList>
+<StmntSeq Intrnl_Id="43">
+<LocList>
+<Loc EndOffset="299" SrcFileId="2" StartOffset="290"/>
+</LocList>
+<BasicStmnt CovItemId="S6" CovItemPrefix="Calculator.model.Equation.java" Intrnl_Id="44">
+<LocList>
+<Loc EndOffset="299" SrcFileId="2" StartOffset="290"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</HierarchyLvl>
+</HierarchyLvl>
+<HierarchyLvl HierarchyLvlId="353" HierarchyLvlTypeId="8" Intrnl_Id="45" Name="EquationDiscriminantCalculator">
+<Header>
+<Loc EndOffset="138" SrcFileId="3" StartOffset="95"/>
+</Header>
+<LocList>
+<Loc EndOffset="633" SrcFileId="3" StartOffset="95"/>
+</LocList>
+<HierarchyLvl HierarchyLvlId="351" HierarchyLvlTypeId="7" Intrnl_Id="46" Name="EquationDiscriminantCalculator">
+<Header>
+<Loc EndOffset="219" SrcFileId="3" StartOffset="163"/>
+</Header>
+<LocList>
+<Loc EndOffset="297" SrcFileId="3" StartOffset="163"/>
+</LocList>
+<StmntSeq Intrnl_Id="47">
+<LocList>
+<Loc EndOffset="245" SrcFileId="3" StartOffset="225"/>
+<Loc EndOffset="269" SrcFileId="3" StartOffset="249"/>
+<Loc EndOffset="293" SrcFileId="3" StartOffset="273"/>
+</LocList>
+<BasicStmnt CovItemId="S1" CovItemPrefix="Calculator.model.EquationDiscriminantCalculator.java" Intrnl_Id="48">
+<LocList>
+<Loc EndOffset="245" SrcFileId="3" StartOffset="225"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S2" CovItemPrefix="Calculator.model.EquationDiscriminantCalculator.java" Intrnl_Id="49">
+<LocList>
+<Loc EndOffset="269" SrcFileId="3" StartOffset="249"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S3" CovItemPrefix="Calculator.model.EquationDiscriminantCalculator.java" Intrnl_Id="50">
+<LocList>
+<Loc EndOffset="293" SrcFileId="3" StartOffset="273"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</HierarchyLvl>
+<HierarchyLvl HierarchyLvlId="352" HierarchyLvlTypeId="7" Intrnl_Id="51" Name="getDiscriminant">
+<Header>
+<Loc EndOffset="369" SrcFileId="3" StartOffset="302"/>
+</Header>
+<LocList>
+<Loc EndOffset="630" SrcFileId="3" StartOffset="302"/>
+</LocList>
+<StmntSeq Intrnl_Id="52">
+<LocList>
+<Loc EndOffset="439" SrcFileId="3" StartOffset="375"/>
+<Loc EndOffset="492" SrcFileId="3" StartOffset="443"/>
+<Loc EndOffset="545" SrcFileId="3" StartOffset="496"/>
+<Loc EndOffset="579" SrcFileId="3" StartOffset="549"/>
+<Loc EndOffset="626" SrcFileId="3" StartOffset="583"/>
+</LocList>
+<CondStmnt CovItemId="S4" CovItemPrefix="Calculator.model.EquationDiscriminantCalculator.java" Intrnl_Id="53">
+<Branch CovItemId="B1" CovItemPrefix="Calculator.model.EquationDiscriminantCalculator.java" Implct="false" Intrnl_Id="54">
+<Cond/>
+<LocList>
+<Loc EndOffset="439" SrcFileId="3" StartOffset="387"/>
+</LocList>
+<StmntSeq Intrnl_Id="55">
+<LocList>
+<Loc EndOffset="434" SrcFileId="3" StartOffset="393"/>
+</LocList>
+<BasicStmnt CovItemId="S5" CovItemPrefix="Calculator.model.EquationDiscriminantCalculator.java" Intrnl_Id="56">
+<LocList>
+<Loc EndOffset="434" SrcFileId="3" StartOffset="393"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</Branch>
+<Branch CovItemId="B2" CovItemPrefix="Calculator.model.EquationDiscriminantCalculator.java" Implct="true" Intrnl_Id="57">
+<Cond/>
+<LocList/>
+<StmntSeq Intrnl_Id="58">
+<LocList/>
+</StmntSeq>
+</Branch>
+<Keyword EndOffset="377" SrcFileId="3" StartOffset="375"/>
+<LocList>
+<Loc EndOffset="439" SrcFileId="3" StartOffset="375"/>
+</LocList>
+<RootTerm CovItemId="C1" CovItemPrefix="Calculator.model.EquationDiscriminantCalculator.java" Intrnl_Id="59">
+<BasicBoolTerm Intrnl_Id="60">
+<LocList>
+<Loc EndOffset="385" SrcFileId="3" StartOffset="379"/>
+</LocList>
+</BasicBoolTerm>
+</RootTerm>
+</CondStmnt>
+<BasicStmnt CovItemId="S6" CovItemPrefix="Calculator.model.EquationDiscriminantCalculator.java" Intrnl_Id="61">
+<LocList>
+<Loc EndOffset="492" SrcFileId="3" StartOffset="443"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S7" CovItemPrefix="Calculator.model.EquationDiscriminantCalculator.java" Intrnl_Id="62">
+<LocList>
+<Loc EndOffset="545" SrcFileId="3" StartOffset="496"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S8" CovItemPrefix="Calculator.model.EquationDiscriminantCalculator.java" Intrnl_Id="63">
+<LocList>
+<Loc EndOffset="579" SrcFileId="3" StartOffset="549"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S9" CovItemPrefix="Calculator.model.EquationDiscriminantCalculator.java" Intrnl_Id="64">
+<LocList>
+<Loc EndOffset="626" SrcFileId="3" StartOffset="583"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</HierarchyLvl>
+</HierarchyLvl>
+<HierarchyLvl HierarchyLvlId="359" HierarchyLvlTypeId="8" Intrnl_Id="65" Name="StandardCalculator">
+<Header>
+<Loc EndOffset="60" SrcFileId="4" StartOffset="29"/>
+</Header>
+<LocList>
+<Loc EndOffset="706" SrcFileId="4" StartOffset="29"/>
+</LocList>
+<HierarchyLvl HierarchyLvlId="354" HierarchyLvlTypeId="7" Intrnl_Id="66" Name="sum">
+<Header>
+<Loc EndOffset="116" SrcFileId="4" StartOffset="67"/>
+</Header>
+<LocList>
+<Loc EndOffset="151" SrcFileId="4" StartOffset="67"/>
+</LocList>
+<StmntSeq Intrnl_Id="67">
+<LocList>
+<Loc EndOffset="147" SrcFileId="4" StartOffset="122"/>
+</LocList>
+<BasicStmnt CovItemId="S1" CovItemPrefix="Calculator.model.StandardCalculator.java" Intrnl_Id="68">
+<LocList>
+<Loc EndOffset="147" SrcFileId="4" StartOffset="122"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</HierarchyLvl>
+<HierarchyLvl HierarchyLvlId="355" HierarchyLvlTypeId="7" Intrnl_Id="69" Name="subtract">
+<Header>
+<Loc EndOffset="210" SrcFileId="4" StartOffset="156"/>
+</Header>
+<LocList>
+<Loc EndOffset="245" SrcFileId="4" StartOffset="156"/>
+</LocList>
+<StmntSeq Intrnl_Id="70">
+<LocList>
+<Loc EndOffset="241" SrcFileId="4" StartOffset="216"/>
+</LocList>
+<BasicStmnt CovItemId="S2" CovItemPrefix="Calculator.model.StandardCalculator.java" Intrnl_Id="71">
+<LocList>
+<Loc EndOffset="241" SrcFileId="4" StartOffset="216"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</HierarchyLvl>
+<HierarchyLvl HierarchyLvlId="356" HierarchyLvlTypeId="7" Intrnl_Id="72" Name="mul">
+<Header>
+<Loc EndOffset="299" SrcFileId="4" StartOffset="250"/>
+</Header>
+<LocList>
+<Loc EndOffset="334" SrcFileId="4" StartOffset="250"/>
+</LocList>
+<StmntSeq Intrnl_Id="73">
+<LocList>
+<Loc EndOffset="330" SrcFileId="4" StartOffset="305"/>
+</LocList>
+<BasicStmnt CovItemId="S3" CovItemPrefix="Calculator.model.StandardCalculator.java" Intrnl_Id="74">
+<LocList>
+<Loc EndOffset="330" SrcFileId="4" StartOffset="305"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</HierarchyLvl>
+<HierarchyLvl HierarchyLvlId="357" HierarchyLvlTypeId="7" Intrnl_Id="75" Name="divide">
+<Header>
+<Loc EndOffset="391" SrcFileId="4" StartOffset="339"/>
+</Header>
+<LocList>
+<Loc EndOffset="520" SrcFileId="4" StartOffset="339"/>
+</LocList>
+<StmntSeq Intrnl_Id="76">
+<LocList>
+<Loc EndOffset="451" SrcFileId="4" StartOffset="397"/>
+<Loc EndOffset="516" SrcFileId="4" StartOffset="455"/>
+</LocList>
+<CondStmnt CovItemId="S4" CovItemPrefix="Calculator.model.StandardCalculator.java" Intrnl_Id="77">
+<Branch CovItemId="B1" CovItemPrefix="Calculator.model.StandardCalculator.java" Implct="false" Intrnl_Id="78">
+<Cond/>
+<LocList>
+<Loc EndOffset="451" SrcFileId="4" StartOffset="415"/>
+</LocList>
+<StmntSeq Intrnl_Id="79">
+<LocList>
+<Loc EndOffset="446" SrcFileId="4" StartOffset="421"/>
+</LocList>
+<BasicStmnt CovItemId="S5" CovItemPrefix="Calculator.model.StandardCalculator.java" Intrnl_Id="80">
+<LocList>
+<Loc EndOffset="446" SrcFileId="4" StartOffset="421"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</Branch>
+<Branch CovItemId="B2" CovItemPrefix="Calculator.model.StandardCalculator.java" Implct="true" Intrnl_Id="81">
+<Cond/>
+<LocList/>
+<StmntSeq Intrnl_Id="82">
+<LocList/>
+</StmntSeq>
+</Branch>
+<Keyword EndOffset="399" SrcFileId="4" StartOffset="397"/>
+<LocList>
+<Loc EndOffset="451" SrcFileId="4" StartOffset="397"/>
+</LocList>
+<RootTerm CovItemId="C1" CovItemPrefix="Calculator.model.StandardCalculator.java" Intrnl_Id="83">
+<BasicBoolTerm Intrnl_Id="84">
+<LocList>
+<Loc EndOffset="413" SrcFileId="4" StartOffset="401"/>
+</LocList>
+</BasicBoolTerm>
+</RootTerm>
+</CondStmnt>
+<BasicStmnt CovItemId="S6" CovItemPrefix="Calculator.model.StandardCalculator.java" Intrnl_Id="85">
+<LocList>
+<Loc EndOffset="516" SrcFileId="4" StartOffset="455"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</HierarchyLvl>
+<HierarchyLvl HierarchyLvlId="358" HierarchyLvlTypeId="7" Intrnl_Id="86" Name="mod">
+<Header>
+<Loc EndOffset="574" SrcFileId="4" StartOffset="525"/>
+</Header>
+<LocList>
+<Loc EndOffset="703" SrcFileId="4" StartOffset="525"/>
+</LocList>
+<StmntSeq Intrnl_Id="87">
+<LocList>
+<Loc EndOffset="634" SrcFileId="4" StartOffset="580"/>
+<Loc EndOffset="699" SrcFileId="4" StartOffset="638"/>
+</LocList>
+<CondStmnt CovItemId="S7" CovItemPrefix="Calculator.model.StandardCalculator.java" Intrnl_Id="88">
+<Branch CovItemId="B3" CovItemPrefix="Calculator.model.StandardCalculator.java" Implct="false" Intrnl_Id="89">
+<Cond/>
+<LocList>
+<Loc EndOffset="634" SrcFileId="4" StartOffset="598"/>
+</LocList>
+<StmntSeq Intrnl_Id="90">
+<LocList>
+<Loc EndOffset="629" SrcFileId="4" StartOffset="604"/>
+</LocList>
+<BasicStmnt CovItemId="S8" CovItemPrefix="Calculator.model.StandardCalculator.java" Intrnl_Id="91">
+<LocList>
+<Loc EndOffset="629" SrcFileId="4" StartOffset="604"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</Branch>
+<Branch CovItemId="B4" CovItemPrefix="Calculator.model.StandardCalculator.java" Implct="true" Intrnl_Id="92">
+<Cond/>
+<LocList/>
+<StmntSeq Intrnl_Id="93">
+<LocList/>
+</StmntSeq>
+</Branch>
+<Keyword EndOffset="582" SrcFileId="4" StartOffset="580"/>
+<LocList>
+<Loc EndOffset="634" SrcFileId="4" StartOffset="580"/>
+</LocList>
+<RootTerm CovItemId="C2" CovItemPrefix="Calculator.model.StandardCalculator.java" Intrnl_Id="94">
+<BasicBoolTerm Intrnl_Id="95">
+<LocList>
+<Loc EndOffset="596" SrcFileId="4" StartOffset="584"/>
+</LocList>
+</BasicBoolTerm>
+</RootTerm>
+</CondStmnt>
+<BasicStmnt CovItemId="S9" CovItemPrefix="Calculator.model.StandardCalculator.java" Intrnl_Id="96">
+<LocList>
+<Loc EndOffset="699" SrcFileId="4" StartOffset="638"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</HierarchyLvl>
+</HierarchyLvl>
+</HierarchyLvl>
+</HierarchyLvl>
+</HierarchyLvl>
+</MASTRoot>
+</TestSessionContainer>
