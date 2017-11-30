@@ -17,7 +17,7 @@ public class EquationDiscriminantCalculatorTest {
 
 	@Before
 	public void setUp() throws Exception {
-		sut = new EquationDiscriminantCalculator(mockEquation);
+		
 	}
 
 	@After
@@ -26,33 +26,25 @@ public class EquationDiscriminantCalculatorTest {
 
 	@Test
 	public void getDiscriminant_randomEquation_returnDiscriminant() {
-		when(mockEquation.getA()).thenReturn(1.00);
-		when(mockEquation.getB()).thenReturn(2.00);
-		when(mockEquation.getC()).thenReturn(1.00);
-		double actual = sut.getDiscriminant();
-		double expected = 0;
-		assertTrue(printTip(expected, actual), doublecomparision(expected, actual));
-		
-		when(mockEquation.getA()).thenReturn(2.00);
-		when(mockEquation.getB()).thenReturn(10.00);
-		when(mockEquation.getC()).thenReturn(2.00);
-		actual = sut.getDiscriminant();
-		expected = 84;
-		assertTrue(printTip(expected, actual), doublecomparision(expected, actual));
-		
-		when(mockEquation.getA()).thenReturn(2.00);
-		when(mockEquation.getB()).thenReturn(1.00);
-		when(mockEquation.getC()).thenReturn(2.00);
-		actual = sut.getDiscriminant();
-		expected = -15;
-		assertTrue(printTip(expected, actual), doublecomparision(expected, actual));
+		getDiscriminantTestHelper(1, 2, 1 , 0);
+		getDiscriminantTestHelper(2, 10, 2 , 84);
+		getDiscriminantTestHelper(2, 1, 2 , -15);
 		
 		verify(mockEquation, times(3)).getA();
 		verify(mockEquation, times(3)).getB();
 		verify(mockEquation, times(3)).getC();
-
 	}
 	
+	private void getDiscriminantTestHelper(double a, double b, double c, double expected) {
+		when(mockEquation.getA()).thenReturn(a);
+		when(mockEquation.getB()).thenReturn(b);
+		when(mockEquation.getC()).thenReturn(c);
+		sut = new EquationDiscriminantCalculator(mockEquation);
+		double actual = sut.getDiscriminant();
+		assertTrue(printTip(expected, actual), doublecomparision(expected, actual));
+		
+	}
+
 	private boolean doublecomparision(double expected, double actual) {
 		double c = expected - actual;
 		if (c < 0)
