@@ -5,11 +5,13 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
-import Calculator.model.exeption.NonQuadraticEquatioException;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+
+import Calculator.model.exeption.NonQuadraticEquatioException;
+
 
 
 public class EquationDiscriminantCalculatorTest {
@@ -26,7 +28,7 @@ public class EquationDiscriminantCalculatorTest {
 	}
 
 	@Test
-	public void getDiscriminant_randomEquation_returnDiscriminant() {
+	public void getDiscriminant_randomEquation_returnDiscriminant() throws NonQuadraticEquatioException {
 		getDiscriminantTestHelper(1, 2, 1 , 0);
 		getDiscriminantTestHelper(2, 10, 2 , 84);
 		getDiscriminantTestHelper(2, 1, 2 , -15);
@@ -34,6 +36,16 @@ public class EquationDiscriminantCalculatorTest {
 		verify(mockEquation, times(3)).getA();
 		verify(mockEquation, times(3)).getB();
 		verify(mockEquation, times(3)).getC();
+	}
+	
+	private void getDiscriminantTestHelper(double a, double b, double c, double expected) throws NonQuadraticEquatioException {
+		when(mockEquation.getA()).thenReturn(a);
+		when(mockEquation.getB()).thenReturn(b);
+		when(mockEquation.getC()).thenReturn(c);
+		sut = new EquationDiscriminantCalculator(mockEquation);
+		double actual = sut.getDiscriminant();
+		assertTrue(printTip(expected, actual), doublecomparision(expected, actual));
+		
 	}
 	
 	@Test(expected = NonQuadraticEquatioException.class)
@@ -46,16 +58,6 @@ public class EquationDiscriminantCalculatorTest {
 		verify(mockEquation, times(1)).getB();
 		verify(mockEquation, times(1)).getC();
 		sut.getDiscriminant();
-	}
-	
-	private void getDiscriminantTestHelper(double a, double b, double c, double expected) {
-		when(mockEquation.getA()).thenReturn(a);
-		when(mockEquation.getB()).thenReturn(b);
-		when(mockEquation.getC()).thenReturn(c);
-		sut = new EquationDiscriminantCalculator(mockEquation);
-		double actual = sut.getDiscriminant();
-		assertTrue(printTip(expected, actual), doublecomparision(expected, actual));
-		
 	}
 
 	private boolean doublecomparision(double expected, double actual) {
