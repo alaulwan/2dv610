@@ -1,9 +1,7 @@
 package Calculator.model;
 
 public class Equation {
-	double a;
-	double b;
-	double c;
+	double a, b, c;
 
 	public Equation(double a, double b, double c) {
 		this.a = a;
