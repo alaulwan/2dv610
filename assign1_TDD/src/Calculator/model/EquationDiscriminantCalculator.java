@@ -3,9 +3,7 @@ package Calculator.model;
 import Calculator.model.exeption.NonQuadraticEquatioException;
 
 public class EquationDiscriminantCalculator {
-	double a;
-	double b;
-	double c;
+	double a, b, c;
 
 	public EquationDiscriminantCalculator(Equation equation) {
 		a = equation.getA();
