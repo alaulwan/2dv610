@@ -5,6 +5,7 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+import Calculator.model.exeption.NonQuadraticEquatioException;
 
 import org.junit.After;
 import org.junit.Before;
@@ -33,6 +34,18 @@ public class EquationDiscriminantCalculatorTest {
 		verify(mockEquation, times(3)).getA();
 		verify(mockEquation, times(3)).getB();
 		verify(mockEquation, times(3)).getC();
+	}
+	
+	@Test(expected = NonQuadraticEquatioException.class)
+	public void getDiscriminant_FirstDegreeEquation_ThrowExeption() throws NonQuadraticEquatioException {
+		when(mockEquation.getA()).thenReturn(0.00);
+		when(mockEquation.getB()).thenReturn(1.00);
+		when(mockEquation.getC()).thenReturn(2.00);
+		sut = new EquationDiscriminantCalculator(mockEquation);
+		verify(mockEquation, times(1)).getA();
+		verify(mockEquation, times(1)).getB();
+		verify(mockEquation, times(1)).getC();
+		sut.getDiscriminant();
 	}
 	
 	private void getDiscriminantTestHelper(double a, double b, double c, double expected) {
