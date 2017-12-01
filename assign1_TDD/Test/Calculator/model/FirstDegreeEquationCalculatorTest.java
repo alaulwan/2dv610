@@ -10,6 +10,9 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import Calculator.model.exeption.NonFirstDegreeEquatioException;
+import Calculator.model.exeption.NonQuadraticEquatioException;
+
 public class FirstDegreeEquationCalculatorTest {
 	private FirstDegreeEquationCalculator sut;
 	private Equation mockEquation = mock(Equation.class);
@@ -39,6 +42,30 @@ public class FirstDegreeEquationCalculatorTest {
 		double actual = sut.getSolution();
 		assertTrue(printTip(expected, actual), doublecomparision(expected, actual));
 
+	}
+	
+	@Test(expected = NonFirstDegreeEquatioException.class)
+	public void getSolution_EquationAIs0BIs0CIsRandom_ThrowExeption()  {
+		when(mockEquation.getA()).thenReturn(0.00);
+		when(mockEquation.getB()).thenReturn(0.00);
+		when(mockEquation.getC()).thenReturn(2.00);
+		sut = new FirstDegreeEquationCalculator(mockEquation);
+		verify(mockEquation, times(1)).getA();
+		verify(mockEquation, times(1)).getB();
+		verify(mockEquation, times(1)).getC();
+		sut.getSolution();
+	}
+	
+	@Test(expected = NonFirstDegreeEquatioException.class)
+	public void getSolution_EquationAIsNot0BIsRandomCIsRandom_ThrowExeption()  {
+		when(mockEquation.getA()).thenReturn(1.00);
+		when(mockEquation.getB()).thenReturn(6.00);
+		when(mockEquation.getC()).thenReturn(2.00);
+		sut = new FirstDegreeEquationCalculator(mockEquation);
+		verify(mockEquation, times(1)).getA();
+		verify(mockEquation, times(1)).getB();
+		verify(mockEquation, times(1)).getC();
+		sut.getSolution();
 	}
 
 	private boolean doublecomparision(double expected, double actual) {
