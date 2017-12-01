@@ -11,7 +11,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import Calculator.model.exeption.NonFirstDegreeEquatioException;
-import Calculator.model.exeption.NonQuadraticEquatioException;
 
 public class FirstDegreeEquationCalculatorTest {
 	private FirstDegreeEquationCalculator sut;
@@ -26,7 +25,7 @@ public class FirstDegreeEquationCalculatorTest {
 	}
 
 	@Test
-	public void getSolution_RandomEquation_ReturnSolution() {
+	public void getSolution_RandomEquation_ReturnSolution() throws NonFirstDegreeEquatioException {
 		getSolutionTestHelper(8, 16, -2);
 		getSolutionTestHelper(-16, 8, 0.5);
 		getSolutionTestHelper(5, 0, 0);
@@ -35,7 +34,7 @@ public class FirstDegreeEquationCalculatorTest {
 		verify(mockEquation, times(3)).getC();
 	}
 
-	private void getSolutionTestHelper(double b, double c, double expected) {
+	private void getSolutionTestHelper(double b, double c, double expected) throws NonFirstDegreeEquatioException {
 		when(mockEquation.getB()).thenReturn(b);
 		when(mockEquation.getC()).thenReturn(c);
 		sut = new FirstDegreeEquationCalculator(mockEquation);
@@ -45,7 +44,7 @@ public class FirstDegreeEquationCalculatorTest {
 	}
 	
 	@Test(expected = NonFirstDegreeEquatioException.class)
-	public void getSolution_EquationAIs0BIs0CIsRandom_ThrowExeption()  {
+	public void getSolution_EquationAIs0BIs0CIsRandom_ThrowExeption() throws NonFirstDegreeEquatioException {
 		when(mockEquation.getA()).thenReturn(0.00);
 		when(mockEquation.getB()).thenReturn(0.00);
 		when(mockEquation.getC()).thenReturn(2.00);
@@ -57,7 +56,7 @@ public class FirstDegreeEquationCalculatorTest {
 	}
 	
 	@Test(expected = NonFirstDegreeEquatioException.class)
-	public void getSolution_EquationAIsNot0BIsRandomCIsRandom_ThrowExeption()  {
+	public void getSolution_EquationAIsNot0BIsRandomCIsRandom_ThrowExeption() throws NonFirstDegreeEquatioException {
 		when(mockEquation.getA()).thenReturn(1.00);
 		when(mockEquation.getB()).thenReturn(6.00);
 		when(mockEquation.getC()).thenReturn(2.00);
