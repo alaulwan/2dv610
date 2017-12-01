@@ -42,7 +42,7 @@ public class FirstDegreeEquationCalculatorTest {
 		assertTrue(printTip(expected, actual), doublecomparision(expected, actual));
 
 	}
-	
+
 	@Test(expected = NonFirstDegreeEquatioException.class)
 	public void getSolution_EquationAIs0BIs0CIsRandom_ThrowExeption() throws NonFirstDegreeEquatioException {
 		when(mockEquation.getA()).thenReturn(0.00);
@@ -54,7 +54,7 @@ public class FirstDegreeEquationCalculatorTest {
 		verify(mockEquation, times(1)).getC();
 		sut.getSolution();
 	}
-	
+
 	@Test(expected = NonFirstDegreeEquatioException.class)
 	public void getSolution_EquationAIsNot0BIsRandomCIsRandom_ThrowExeption() throws NonFirstDegreeEquatioException {
 		when(mockEquation.getA()).thenReturn(1.00);

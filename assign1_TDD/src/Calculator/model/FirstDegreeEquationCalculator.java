@@ -8,15 +8,13 @@ public class FirstDegreeEquationCalculator {
 	private double Solution;
 
 	public FirstDegreeEquationCalculator(Equation equation) {
-
 		a = equation.getA();
 		b = equation.getB();
 		c = equation.getC();
-
 	}
 
 	private void startSolving() throws NonFirstDegreeEquatioException {
-		if (a!=0 || b==0) {
+		if (a != 0 || b == 0) {
 			throw new NonFirstDegreeEquatioException();
 		}
 		StandardCalculator SC = new StandardCalculator();
