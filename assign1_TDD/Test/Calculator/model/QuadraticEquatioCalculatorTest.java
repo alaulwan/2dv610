@@ -2,10 +2,7 @@ package Calculator.model;
 
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
-import static org.mockito.Matchers.*;
 
 import org.junit.After;
 import org.junit.Before;
@@ -50,6 +47,23 @@ public class QuadraticEquatioCalculatorTest {
 		assertTrue(printTip(expected_1, actual_1), doublecomparision(expected_1, actual_1));
 		assertTrue(printTip(expected_2, actual_2), doublecomparision(expected_2, actual_2));
 		
+		when(mockEquation.getA()).thenReturn(1.00);
+		when(mockEquation.getB()).thenReturn(4.00);
+		when(mockEquation.getC()).thenReturn(1.00);
+		when(mockEDG.getDiscriminant()).thenReturn(0.00);
+		when(mockSC.mul(2.00, 1.00)).thenReturn(2.00);
+		when(mockAC.squareRoot(0.00)).thenReturn(0.00);
+		when(mockSC.subtract(-4.00, 0.00)).thenReturn(-4.00);
+		when(mockSC.sum(-4.00, 0.00)).thenReturn(-4.00);
+		when(mockSC.divide(-4.00, 2.00)).thenReturn(-2.00);
+		sut.startSolving();
+		actual_1 = sut.getSolution1();
+		actual_2 = sut.getSolution2();
+		expected_1 = -2.00;
+		expected_2 = -2.00;
+		
+		assertTrue(printTip(expected_1, actual_1), doublecomparision(expected_1, actual_1));
+		assertTrue(printTip(expected_2, actual_2), doublecomparision(expected_2, actual_2));
 		
 	}
 	

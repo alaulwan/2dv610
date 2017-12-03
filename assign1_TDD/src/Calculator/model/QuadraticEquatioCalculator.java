@@ -22,26 +22,34 @@ public class QuadraticEquatioCalculator {
 	
 	public void startSolving() throws NonQuadraticEquatioException{
 		this.Discriminant= EDC.getDiscriminant();
-		if (Discriminant > 0) {
+		if (getDiscriminant() > 0) {
 			numberOfSolutions=2;
-			Solution1 = SC.divide(SC.subtract(-equation.getB(), AC.squareRoot(Discriminant)), SC.mul(2, equation.getA()));
-			Solution2 = SC.divide(SC.sum(-equation.getB(), AC.squareRoot(Discriminant)), SC.mul(2, equation.getA()));
+			firstSolution();
+			secondSolution();
 		}
-		else if (Discriminant == 0) {
+		
+		else if (getDiscriminant() == 0) {
 			numberOfSolutions=1;
-			Solution1 = SC.divide(SC.subtract(-equation.getB(), AC.squareRoot(Discriminant)), SC.mul(2, equation.getA()));
-			Solution2 = SC.divide(SC.sum(-equation.getB(), AC.squareRoot(Discriminant)), SC.mul(2, equation.getA()));
-		}
-		else if (Discriminant == 0) {
-			numberOfSolutions=1;
-			Solution1 = SC.divide(SC.subtract(-equation.getB(), AC.squareRoot(Discriminant)), SC.mul(2, equation.getA()));
-			Solution2 = SC.divide(SC.sum(-equation.getB(), AC.squareRoot(Discriminant)), SC.mul(2, equation.getA()));
+			firstSolution();
+			secondSolution();
 		}
 		else {
 			numberOfSolutions=0;
 			Solution1 = Double.MIN_VALUE;
 			Solution2 = Solution1;
 		}
+	}
+	
+	private void firstSolution() {
+		Solution1 = SC.divide(SC.subtract(-equation.getB(), AC.squareRoot(Discriminant)), SC.mul(2, equation.getA()));
+	}
+	
+	private void secondSolution() {
+		if (getNumberOfSolutions()==1) {
+			Solution2 = Solution1;
+			return;
+		}
+		Solution2 = SC.divide(SC.sum(-equation.getB(), AC.squareRoot(Discriminant)), SC.mul(2, equation.getA()));
 	}
 
 	public double getSolution1() {
@@ -50,6 +58,14 @@ public class QuadraticEquatioCalculator {
 
 	public double getSolution2() {
 		return Solution2;
+	}
+	
+	public int getNumberOfSolutions() {
+		return numberOfSolutions;
+	}
+	
+	public double getDiscriminant() {
+		return Discriminant;
 	}
 	
 }
