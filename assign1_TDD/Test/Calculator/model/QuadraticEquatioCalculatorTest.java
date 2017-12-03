@@ -65,6 +65,15 @@ public class QuadraticEquatioCalculatorTest {
 		assertTrue(printTip(expected_1, actual_1), doublecomparision(expected_1, actual_1));
 		assertTrue(printTip(expected_2, actual_2), doublecomparision(expected_2, actual_2));
 		
+		when(mockEDG.getDiscriminant()).thenReturn(-4.00);
+		sut.startSolving();
+		actual_1 = sut.getSolution1();
+		actual_2 = sut.getSolution2();
+		expected_1 = Double.MIN_VALUE;
+		expected_2 = Double.MIN_VALUE;
+		
+		assertTrue(printTip(expected_1, actual_1), doublecomparision(expected_1, actual_1));
+		assertTrue(printTip(expected_2, actual_2), doublecomparision(expected_2, actual_2));
 	}
 	
 	private boolean doublecomparision(double expected, double actual) {
