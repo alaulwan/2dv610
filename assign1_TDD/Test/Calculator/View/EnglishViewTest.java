@@ -9,13 +9,10 @@ import static org.mockito.Mockito.when;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintStream;
-import java.util.Random;
-import java.util.Scanner;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.Mockito;
 
 public class EnglishViewTest {
 	private EnglishView sut;

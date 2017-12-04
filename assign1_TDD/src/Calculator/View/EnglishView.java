@@ -3,7 +3,6 @@ package Calculator.View;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintStream;
-import java.util.Scanner;
 
 public class EnglishView {
 	private PrintStream printer;
@@ -11,7 +10,7 @@ public class EnglishView {
 
 	public EnglishView(PrintStream p, InputStream in) {
 		this.printer = p;
-		this.input= in;
+		this.input = in;
 	}
 
 	public void instructionPrint() {
@@ -56,7 +55,7 @@ public class EnglishView {
 	public void printText(String text) {
 		printer.println(text);
 	}
-	
+
 	public String getInput() {
 		StringBuilder sb = new StringBuilder();
 		try {
@@ -64,8 +63,8 @@ public class EnglishView {
 			char c = '\n';
 			c = (char) input.read();
 			sb.append(c);
-			int a = input.available()-2;
-			while (a>0) {
+			int a = input.available() - 2;
+			while (a > 0) {
 				c = (char) input.read();
 				sb.append(c);
 				a--;
@@ -76,7 +75,5 @@ public class EnglishView {
 			return sb.toString();
 		}
 	}
-	
-	
 
 }
