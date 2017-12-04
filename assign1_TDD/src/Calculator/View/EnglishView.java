@@ -47,5 +47,9 @@ public class EnglishView {
 		}
 
 	}
+	
+	public void printText(String text) {
+		
+	}
 
 }

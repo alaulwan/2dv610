@@ -79,4 +79,17 @@ public class EnglishViewTest {
 		}
 
 	}
+	
+	@Test
+	public void printText_RandomText() {
+		sut.printText("Done");
+		verify(mockPrinter, times(1)).println("Done");
+		
+		sut.printText("");
+		verify(mockPrinter, times(1)).println("");
+		
+		sut.printText("\n");
+		verify(mockPrinter, times(1)).println("\n");
+		
+	}
 }
