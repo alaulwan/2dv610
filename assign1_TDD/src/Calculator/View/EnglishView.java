@@ -1,13 +1,17 @@
 package Calculator.View;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintStream;
+import java.util.Scanner;
 
 public class EnglishView {
 	private PrintStream printer;
+	private InputStream input;;
 
 	public EnglishView(PrintStream p, InputStream in) {
 		this.printer = p;
+		this.input= in;
 	}
 
 	public void instructionPrint() {
@@ -54,8 +58,23 @@ public class EnglishView {
 	}
 	
 	public String getInput() {
-		return null;
-		
+		StringBuilder sb = new StringBuilder();
+		try {
+			input.skip(input.available());
+			char c = '\n';
+			c = (char) input.read();
+			sb.append(c);
+			int a = input.available()-2;
+			while (a>0) {
+				c = (char) input.read();
+				sb.append(c);
+				a--;
+			}
+			input.skip(input.available());
+			return sb.toString();
+		} catch (IOException e) {
+			return sb.toString();
+		}
 	}
 	
 	
