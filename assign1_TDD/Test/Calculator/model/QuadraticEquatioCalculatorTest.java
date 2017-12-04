@@ -21,13 +21,13 @@ public class QuadraticEquatioCalculatorTest {
 
 	@Before
 	public void setUp() throws Exception {
-		
+
 	}
 
 	@After
 	public void tearDown() throws Exception {
 	}
-	
+
 	@Test
 	public void setEquation_RandomEquation_UpdateEquation() throws NonQuadraticEquatioException {
 		EquationDiscriminantCalculator spyEDC = Mockito.spy(new EquationDiscriminantCalculator(mockEquation));
@@ -60,10 +60,10 @@ public class QuadraticEquatioCalculatorTest {
 		double actual_2 = sut.getSolution2();
 		double expected_1 = -3.00;
 		double expected_2 = -1.00;
-		
+
 		assertTrue(printTip(expected_1, actual_1), doublecomparision(expected_1, actual_1));
 		assertTrue(printTip(expected_2, actual_2), doublecomparision(expected_2, actual_2));
-		
+
 		when(mockEquation.getA()).thenReturn(1.00);
 		when(mockEquation.getB()).thenReturn(4.00);
 		when(mockEquation.getC()).thenReturn(1.00);
@@ -78,21 +78,21 @@ public class QuadraticEquatioCalculatorTest {
 		actual_2 = sut.getSolution2();
 		expected_1 = -2.00;
 		expected_2 = -2.00;
-		
+
 		assertTrue(printTip(expected_1, actual_1), doublecomparision(expected_1, actual_1));
 		assertTrue(printTip(expected_2, actual_2), doublecomparision(expected_2, actual_2));
-		
+
 		when(mockEDG.getDiscriminant()).thenReturn(-4.00);
 		sut.startSolving();
 		actual_1 = sut.getSolution1();
 		actual_2 = sut.getSolution2();
 		expected_1 = Double.MIN_VALUE;
 		expected_2 = Double.MIN_VALUE;
-		
+
 		assertTrue(printTip(expected_1, actual_1), doublecomparision(expected_1, actual_1));
 		assertTrue(printTip(expected_2, actual_2), doublecomparision(expected_2, actual_2));
 	}
-	
+
 	private boolean doublecomparision(double expected, double actual) {
 		double c = expected - actual;
 		if (c < 0)

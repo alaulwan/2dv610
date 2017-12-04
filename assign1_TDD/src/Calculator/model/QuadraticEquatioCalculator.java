@@ -7,45 +7,44 @@ public class QuadraticEquatioCalculator {
 	StandardCalculator SC;
 	AdvancedCalculator AC;
 	EquationDiscriminantCalculator EDC;
-	
+
 	private double Discriminant, Solution1, Solution2;
-	
 
 	private int numberOfSolutions;
-	
-	public QuadraticEquatioCalculator(Equation equation, StandardCalculator SC, AdvancedCalculator AC, EquationDiscriminantCalculator EDC) {
+
+	public QuadraticEquatioCalculator(Equation equation, StandardCalculator SC, AdvancedCalculator AC,
+			EquationDiscriminantCalculator EDC) {
 		this.SC = SC;
-		this.AC= AC;
+		this.AC = AC;
 		this.EDC = EDC;
-		this.equation=equation;
+		this.equation = equation;
 	}
-	
-	public void startSolving() throws NonQuadraticEquatioException{
-		this.Discriminant= EDC.getDiscriminant();
+
+	public void startSolving() throws NonQuadraticEquatioException {
+		this.Discriminant = EDC.getDiscriminant();
 		if (getDiscriminant() > 0) {
-			numberOfSolutions=2;
+			numberOfSolutions = 2;
 			firstSolution();
 			secondSolution();
 		}
-		
+
 		else if (getDiscriminant() == 0) {
-			numberOfSolutions=1;
+			numberOfSolutions = 1;
 			firstSolution();
 			secondSolution();
-		}
-		else {
-			numberOfSolutions=0;
+		} else {
+			numberOfSolutions = 0;
 			Solution1 = Double.MIN_VALUE;
 			Solution2 = Solution1;
 		}
 	}
-	
+
 	private void firstSolution() {
 		Solution1 = SC.divide(SC.subtract(-equation.getB(), AC.squareRoot(Discriminant)), SC.mul(2, equation.getA()));
 	}
-	
+
 	private void secondSolution() {
-		if (getNumberOfSolutions()==1) {
+		if (getNumberOfSolutions() == 1) {
 			Solution2 = Solution1;
 			return;
 		}
@@ -59,11 +58,11 @@ public class QuadraticEquatioCalculator {
 	public double getSolution2() {
 		return Solution2;
 	}
-	
+
 	public int getNumberOfSolutions() {
 		return numberOfSolutions;
 	}
-	
+
 	public double getDiscriminant() {
 		return Discriminant;
 	}
@@ -74,5 +73,5 @@ public class QuadraticEquatioCalculator {
 		this.EDC.setB(equation.getB());
 		this.EDC.setC(equation.getC());
 	}
-	
+
 }
