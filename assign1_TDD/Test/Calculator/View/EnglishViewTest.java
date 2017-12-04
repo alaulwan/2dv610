@@ -25,12 +25,26 @@ public class EnglishViewTest {
 	}
 
 	@Test
-	public void instructionPrint_Void_PrintInstruction() {
+	public void instructionPrintTest() {
 		sut.instructionPrint();
 		verify(mockPrinter, times(1)).println("Welcome to calculator");
 		verify(mockPrinter, times(1)).println("Enter:\n" + "s: standard calculator\n" + "d: advanced calculator\n"
 				+ "f: First Degree Equation Calculator a.x + b = 0\n"
 				+ "q: Quadratic Equatio Calculator a.x^2 + b.x + c = 0\n" + "e: exit");
 	}
+	
+	@Test
+	public void standardInstructionDisplayTest() {
+		sut.standardInstructionDisplay();
+		verify(mockPrinter, times(1)).println("Welcome to the standard calculator for (+,-,*,/,%) operations.");
+	}
+	
+	@Test
+	public void advancedInstructionDisplayTest() {
+		sut.advancedInstructionDisplay();
+		verify(mockPrinter, times(1)).println("Welcome to the advanced calculator for (square root, power) operations.");
+	}
+	
+	
 
 }
