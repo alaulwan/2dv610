@@ -22,6 +22,9 @@ public class EnglishView {
 
 	public void advancedInstructionDisplay() {
 		printer.println("Welcome to the advanced calculator for (square root, power) operations.");
-
+	}
+	
+	public void standardResultPrint(double result) {
+		
 	}
 }
