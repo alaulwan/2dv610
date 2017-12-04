@@ -1,0 +1,1003 @@
+<?xml version="1.0" encoding="UTF-8"?><TestSessionContainer xmlns="http://www.codecover.org/xml/testsession-container" Date="1512279347998" TestSessionContainerId="397a8083-c245-4c6d-b1f2-342992b9b7c8" version="1.0">
+<SrcFileList>
+<SrcFile Content="package Calculator.model;&#13;&#10;&#13;&#10;public class AdvancedCalculator {&#13;&#10;&#13;&#10;&#9;public double squareRoot(double positiveNumber) {&#13;&#10;&#9;&#9;if (positiveNumber &gt;= 0) {&#13;&#10;&#9;&#9;&#9;return Math.sqrt(positiveNumber);&#13;&#10;&#9;&#9;}&#13;&#10;&#9;&#9;throw new IllegalArgumentException(&quot;Can not Square Root a negative number&quot;);&#13;&#10;&#9;}&#13;&#10;&#13;&#10;&#9;public double power(double number, double exponent) {&#13;&#10;&#9;&#9;return Math.pow(number, exponent);&#13;&#10;&#9;}&#13;&#10;&#13;&#10;}&#13;&#10;" Filename="AdvancedCalculator.java" Intrnl_Id="1"/>
+<SrcFile Content="package Calculator.model;&#13;&#10;&#13;&#10;public class Equation {&#13;&#10;&#9;double a, b, c;&#13;&#10;&#13;&#10;&#9;public Equation(double a, double b, double c) {&#13;&#10;&#9;&#9;this.a = a;&#13;&#10;&#9;&#9;this.b = b;&#13;&#10;&#9;&#9;this.c = c;&#13;&#10;&#9;}&#13;&#10;&#13;&#10;&#9;public double getA() {&#13;&#10;&#9;&#9;return a;&#13;&#10;&#9;}&#13;&#10;&#13;&#10;&#9;public double getB() {&#13;&#10;&#9;&#9;return b;&#13;&#10;&#9;}&#13;&#10;&#13;&#10;&#9;public double getC() {&#13;&#10;&#9;&#9;return c;&#13;&#10;&#9;}&#13;&#10;&#13;&#10;}&#13;&#10;" Filename="Equation.java" Intrnl_Id="2"/>
+<SrcFile Content="package Calculator.model;&#13;&#10;&#13;&#10;import Calculator.model.exeption.NonQuadraticEquatioException;&#13;&#10;&#13;&#10;public class EquationDiscriminantCalculator {&#13;&#10;&#9;double a, b, c;&#13;&#10;&#13;&#10;&#9;public EquationDiscriminantCalculator(Equation equation) {&#13;&#10;&#9;&#9;a = equation.getA();&#13;&#10;&#9;&#9;b = equation.getB();&#13;&#10;&#9;&#9;c = equation.getC();&#13;&#10;&#9;}&#13;&#10;&#13;&#10;&#9;public double getDiscriminant() throws NonQuadraticEquatioException {&#13;&#10;&#9;&#9;if (a == 0) {&#13;&#10;&#9;&#9;&#9;throw new NonQuadraticEquatioException();&#13;&#10;&#9;&#9;}&#13;&#10;&#9;&#9;StandardCalculator SC = new StandardCalculator();&#13;&#10;&#9;&#9;AdvancedCalculator AC = new AdvancedCalculator();&#13;&#10;&#9;&#9;double A_mul_C = SC.mul(a, c);&#13;&#10;&#9;&#9;return AC.power(b, 2) - SC.mul(4, A_mul_C);&#13;&#10;&#9;}&#13;&#10;}&#13;&#10;" Filename="EquationDiscriminantCalculator.java" Intrnl_Id="3"/>
+<SrcFile Content="package Calculator.model;&#13;&#10;&#13;&#10;import Calculator.model.exeption.NonFirstDegreeEquatioException;&#13;&#10;&#13;&#10;public class FirstDegreeEquationCalculator {&#13;&#10;&#13;&#10;&#9;private double a, b, c;&#13;&#10;&#9;private double Solution;&#13;&#10;&#13;&#10;&#9;public FirstDegreeEquationCalculator(Equation equation) {&#13;&#10;&#9;&#9;a = equation.getA();&#13;&#10;&#9;&#9;b = equation.getB();&#13;&#10;&#9;&#9;c = equation.getC();&#13;&#10;&#9;}&#13;&#10;&#13;&#10;&#9;private void startSolving() throws NonFirstDegreeEquatioException {&#13;&#10;&#9;&#9;if (a != 0 || b == 0) {&#13;&#10;&#9;&#9;&#9;throw new NonFirstDegreeEquatioException();&#13;&#10;&#9;&#9;}&#13;&#10;&#9;&#9;StandardCalculator SC = new StandardCalculator();&#13;&#10;&#9;&#9;Solution = SC.divide(-c, b);&#13;&#10;&#9;}&#13;&#10;&#13;&#10;&#9;public double getSolution() throws NonFirstDegreeEquatioException {&#13;&#10;&#9;&#9;this.startSolving();&#13;&#10;&#9;&#9;return Solution;&#13;&#10;&#9;}&#13;&#10;&#13;&#10;}" Filename="FirstDegreeEquationCalculator.java" Intrnl_Id="4"/>
+<SrcFile Content="package Calculator.model;&#13;&#10;&#13;&#10;import Calculator.model.exeption.NonQuadraticEquatioException;&#13;&#10;&#13;&#10;public class QuadraticEquatioCalculator {&#13;&#10;&#9;private Equation equation;&#13;&#10;&#9;StandardCalculator SC;&#13;&#10;&#9;AdvancedCalculator AC;&#13;&#10;&#9;EquationDiscriminantCalculator EDC;&#13;&#10;&#9;&#13;&#10;&#9;private double Discriminant, Solution1, Solution2;&#13;&#10;&#9;&#13;&#10;&#13;&#10;&#9;private int numberOfSolutions;&#13;&#10;&#9;&#13;&#10;&#9;public QuadraticEquatioCalculator(Equation equation, StandardCalculator SC, AdvancedCalculator AC, EquationDiscriminantCalculator EDC) {&#13;&#10;&#9;&#9;this.SC = SC;&#13;&#10;&#9;&#9;this.AC= AC;&#13;&#10;&#9;&#9;this.EDC = EDC;&#13;&#10;&#9;&#9;this.equation=equation;&#13;&#10;&#9;}&#13;&#10;&#9;&#13;&#10;&#9;public void startSolving() throws NonQuadraticEquatioException{&#13;&#10;&#9;&#9;this.Discriminant= EDC.getDiscriminant();&#13;&#10;&#9;&#9;if (getDiscriminant() &gt; 0) {&#13;&#10;&#9;&#9;&#9;numberOfSolutions=2;&#13;&#10;&#9;&#9;&#9;firstSolution();&#13;&#10;&#9;&#9;&#9;secondSolution();&#13;&#10;&#9;&#9;}&#13;&#10;&#9;&#9;&#13;&#10;&#9;&#9;else if (getDiscriminant() == 0) {&#13;&#10;&#9;&#9;&#9;numberOfSolutions=1;&#13;&#10;&#9;&#9;&#9;firstSolution();&#13;&#10;&#9;&#9;&#9;secondSolution();&#13;&#10;&#9;&#9;}&#13;&#10;&#9;&#9;else {&#13;&#10;&#9;&#9;&#9;numberOfSolutions=0;&#13;&#10;&#9;&#9;&#9;Solution1 = Double.MIN_VALUE;&#13;&#10;&#9;&#9;&#9;Solution2 = Solution1;&#13;&#10;&#9;&#9;}&#13;&#10;&#9;}&#13;&#10;&#9;&#13;&#10;&#9;private void firstSolution() {&#13;&#10;&#9;&#9;Solution1 = SC.divide(SC.subtract(-equation.getB(), AC.squareRoot(Discriminant)), SC.mul(2, equation.getA()));&#13;&#10;&#9;}&#13;&#10;&#9;&#13;&#10;&#9;private void secondSolution() {&#13;&#10;&#9;&#9;if (getNumberOfSolutions()==1) {&#13;&#10;&#9;&#9;&#9;Solution2 = Solution1;&#13;&#10;&#9;&#9;&#9;return;&#13;&#10;&#9;&#9;}&#13;&#10;&#9;&#9;Solution2 = SC.divide(SC.sum(-equation.getB(), AC.squareRoot(Discriminant)), SC.mul(2, equation.getA()));&#13;&#10;&#9;}&#13;&#10;&#13;&#10;&#9;public double getSolution1() {&#13;&#10;&#9;&#9;return Solution1;&#13;&#10;&#9;}&#13;&#10;&#13;&#10;&#9;public double getSolution2() {&#13;&#10;&#9;&#9;return Solution2;&#13;&#10;&#9;}&#13;&#10;&#9;&#13;&#10;&#9;public int getNumberOfSolutions() {&#13;&#10;&#9;&#9;return numberOfSolutions;&#13;&#10;&#9;}&#13;&#10;&#9;&#13;&#10;&#9;public double getDiscriminant() {&#13;&#10;&#9;&#9;return Discriminant;&#13;&#10;&#9;}&#13;&#10;&#9;&#13;&#10;}&#13;&#10;" Filename="QuadraticEquatioCalculator.java" Intrnl_Id="5"/>
+<SrcFile Content="package Calculator.model;&#13;&#10;&#13;&#10;public class StandardCalculator {&#13;&#10;&#13;&#10;&#9;public double sum(double number1, double number2) {&#13;&#10;&#9;&#9;return number1 + number2;&#13;&#10;&#9;}&#13;&#10;&#13;&#10;&#9;public double subtract(double number1, double number2) {&#13;&#10;&#9;&#9;return number1 - number2;&#13;&#10;&#9;}&#13;&#10;&#13;&#10;&#9;public double mul(double number1, double number2) {&#13;&#10;&#9;&#9;return number1 * number2;&#13;&#10;&#9;}&#13;&#10;&#13;&#10;&#9;public double divide(double number1, double number2) {&#13;&#10;&#9;&#9;if (number2 != 0) {&#13;&#10;&#9;&#9;&#9;return number1 / number2;&#13;&#10;&#9;&#9;}&#13;&#10;&#9;&#9;throw new IllegalArgumentException(&quot;Number2 'divisor' is 0&quot;);&#13;&#10;&#9;}&#13;&#10;&#13;&#10;&#9;public double mod(double number1, double number2) {&#13;&#10;&#9;&#9;if (number2 != 0) {&#13;&#10;&#9;&#9;&#9;return number1 % number2;&#13;&#10;&#9;&#9;}&#13;&#10;&#9;&#9;throw new IllegalArgumentException(&quot;Number2 'divisor' is 0&quot;);&#13;&#10;&#9;}&#13;&#10;}&#13;&#10;" Filename="StandardCalculator.java" Intrnl_Id="6"/>
+<SrcFile Content="package Calculator.model.exeption;&#13;&#10;&#13;&#10;public class NonFirstDegreeEquatioException extends Exception {&#13;&#10;&#9;public NonFirstDegreeEquatioException() {&#13;&#10;&#9;&#9;&#13;&#10;&#9;}&#13;&#10;&#13;&#10;}&#13;&#10;" Filename="NonFirstDegreeEquatioException.java" Intrnl_Id="7"/>
+<SrcFile Content="package Calculator.model.exeption;&#13;&#10;&#13;&#10;public class NonQuadraticEquatioException extends Exception {&#13;&#10;&#13;&#10;}&#13;&#10;" Filename="NonQuadraticEquatioException.java" Intrnl_Id="8"/>
+</SrcFileList>
+<CritList>
+<CritListEntry Name="org.codecover.model.utils.criteria.LoopCoverage" PluginName="org.codecover"/>
+<CritListEntry Name="org.codecover.model.utils.criteria.ConditionCoverage" PluginName="org.codecover"/>
+<CritListEntry Name="org.codecover.model.utils.criteria.BranchCoverage" PluginName="org.codecover"/>
+<CritListEntry Name="org.codecover.model.utils.criteria.StatementCoverage" PluginName="org.codecover"/>
+</CritList>
+<BoolOpList>
+<BoolOp Arity="2" Intrnl_Id="9" Name="conditional or (||)">
+<BoolAssgnmntBoolMapList>
+<MapEntry BoolAssgnmnt="00" Value="false"/>
+<MapEntry BoolAssgnmnt="01" Value="true"/>
+<MapEntry BoolAssgnmnt="12" Value="true"/>
+</BoolAssgnmntBoolMapList>
+</BoolOp>
+</BoolOpList>
+<HierarchyLvlTypeList>
+<HierarchyLvlType EnglishName="package" IntrnlName="package" Intrnl_Id="10"/>
+<HierarchyLvlType EnglishName="method" IntrnlName="method" Intrnl_Id="11"/>
+<HierarchyLvlType EnglishName="class" IntrnlName="class" Intrnl_Id="12"/>
+<HierarchyLvlType EnglishName="default package" IntrnlName="default package" Intrnl_Id="13"/>
+</HierarchyLvlTypeList>
+<MASTRoot>
+<HierarchyLvl HierarchyLvlId="2145" HierarchyLvlTypeId="13" Intrnl_Id="14" Name="default package">
+<Header/>
+<LocList/>
+<HierarchyLvl HierarchyLvlId="2144" HierarchyLvlTypeId="10" Intrnl_Id="15" Name="Calculator">
+<Header/>
+<LocList/>
+<HierarchyLvl HierarchyLvlId="2143" HierarchyLvlTypeId="10" Intrnl_Id="16" Name="model">
+<Header/>
+<LocList/>
+<HierarchyLvl HierarchyLvlId="2142" HierarchyLvlTypeId="10" Intrnl_Id="17" Name="exeption">
+<Header/>
+<LocList/>
+<HierarchyLvl HierarchyLvlId="2140" HierarchyLvlTypeId="12" Intrnl_Id="18" Name="NonFirstDegreeEquatioException">
+<Header>
+<Loc EndOffset="99" SrcFileId="7" StartOffset="38"/>
+</Header>
+<LocList>
+<Loc EndOffset="158" SrcFileId="7" StartOffset="38"/>
+</LocList>
+<HierarchyLvl HierarchyLvlId="2139" HierarchyLvlTypeId="11" Intrnl_Id="19" Name="NonFirstDegreeEquatioException">
+<Header>
+<Loc EndOffset="143" SrcFileId="7" StartOffset="104"/>
+</Header>
+<LocList>
+<Loc EndOffset="153" SrcFileId="7" StartOffset="104"/>
+</LocList>
+</HierarchyLvl>
+</HierarchyLvl>
+<HierarchyLvl HierarchyLvlId="2141" HierarchyLvlTypeId="12" Intrnl_Id="20" Name="NonQuadraticEquatioException">
+<Header>
+<Loc EndOffset="97" SrcFileId="8" StartOffset="38"/>
+</Header>
+<LocList>
+<Loc EndOffset="104" SrcFileId="8" StartOffset="38"/>
+</LocList>
+</HierarchyLvl>
+</HierarchyLvl>
+<HierarchyLvl HierarchyLvlId="2111" HierarchyLvlTypeId="12" Intrnl_Id="21" Name="AdvancedCalculator">
+<Header>
+<Loc EndOffset="60" SrcFileId="1" StartOffset="29"/>
+</Header>
+<LocList>
+<Loc EndOffset="378" SrcFileId="1" StartOffset="29"/>
+</LocList>
+<HierarchyLvl HierarchyLvlId="2109" HierarchyLvlTypeId="11" Intrnl_Id="22" Name="squareRoot">
+<Header>
+<Loc EndOffset="114" SrcFileId="1" StartOffset="67"/>
+</Header>
+<LocList>
+<Loc EndOffset="273" SrcFileId="1" StartOffset="67"/>
+</LocList>
+<StmntSeq Intrnl_Id="23">
+<LocList>
+<Loc EndOffset="189" SrcFileId="1" StartOffset="120"/>
+<Loc EndOffset="269" SrcFileId="1" StartOffset="193"/>
+</LocList>
+<CondStmnt CovItemId="S1" CovItemPrefix="Calculator.model.AdvancedCalculator.java" Intrnl_Id="24">
+<Branch CovItemId="B1" CovItemPrefix="Calculator.model.AdvancedCalculator.java" Implct="false" Intrnl_Id="25">
+<Cond/>
+<LocList>
+<Loc EndOffset="189" SrcFileId="1" StartOffset="145"/>
+</LocList>
+<StmntSeq Intrnl_Id="26">
+<LocList>
+<Loc EndOffset="184" SrcFileId="1" StartOffset="151"/>
+</LocList>
+<BasicStmnt CovItemId="S2" CovItemPrefix="Calculator.model.AdvancedCalculator.java" Intrnl_Id="27">
+<LocList>
+<Loc EndOffset="184" SrcFileId="1" StartOffset="151"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</Branch>
+<Branch CovItemId="B2" CovItemPrefix="Calculator.model.AdvancedCalculator.java" Implct="true" Intrnl_Id="28">
+<Cond/>
+<LocList/>
+<StmntSeq Intrnl_Id="29">
+<LocList/>
+</StmntSeq>
+</Branch>
+<Keyword EndOffset="122" SrcFileId="1" StartOffset="120"/>
+<LocList>
+<Loc EndOffset="189" SrcFileId="1" StartOffset="120"/>
+</LocList>
+<RootTerm CovItemId="C1" CovItemPrefix="Calculator.model.AdvancedCalculator.java" Intrnl_Id="30">
+<BasicBoolTerm Intrnl_Id="31">
+<LocList>
+<Loc EndOffset="143" SrcFileId="1" StartOffset="124"/>
+</LocList>
+</BasicBoolTerm>
+</RootTerm>
+</CondStmnt>
+<BasicStmnt CovItemId="S3" CovItemPrefix="Calculator.model.AdvancedCalculator.java" Intrnl_Id="32">
+<LocList>
+<Loc EndOffset="269" SrcFileId="1" StartOffset="193"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</HierarchyLvl>
+<HierarchyLvl HierarchyLvlId="2110" HierarchyLvlTypeId="11" Intrnl_Id="33" Name="power">
+<Header>
+<Loc EndOffset="329" SrcFileId="1" StartOffset="278"/>
+</Header>
+<LocList>
+<Loc EndOffset="373" SrcFileId="1" StartOffset="278"/>
+</LocList>
+<StmntSeq Intrnl_Id="34">
+<LocList>
+<Loc EndOffset="369" SrcFileId="1" StartOffset="335"/>
+</LocList>
+<BasicStmnt CovItemId="S4" CovItemPrefix="Calculator.model.AdvancedCalculator.java" Intrnl_Id="35">
+<LocList>
+<Loc EndOffset="369" SrcFileId="1" StartOffset="335"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</HierarchyLvl>
+</HierarchyLvl>
+<HierarchyLvl HierarchyLvlId="2116" HierarchyLvlTypeId="12" Intrnl_Id="36" Name="Equation">
+<Header>
+<Loc EndOffset="50" SrcFileId="2" StartOffset="29"/>
+</Header>
+<LocList>
+<Loc EndOffset="308" SrcFileId="2" StartOffset="29"/>
+</LocList>
+<HierarchyLvl HierarchyLvlId="2112" HierarchyLvlTypeId="11" Intrnl_Id="37" Name="Equation">
+<Header>
+<Loc EndOffset="120" SrcFileId="2" StartOffset="75"/>
+</Header>
+<LocList>
+<Loc EndOffset="171" SrcFileId="2" StartOffset="75"/>
+</LocList>
+<StmntSeq Intrnl_Id="38">
+<LocList>
+<Loc EndOffset="137" SrcFileId="2" StartOffset="126"/>
+<Loc EndOffset="152" SrcFileId="2" StartOffset="141"/>
+<Loc EndOffset="167" SrcFileId="2" StartOffset="156"/>
+</LocList>
+<BasicStmnt CovItemId="S1" CovItemPrefix="Calculator.model.Equation.java" Intrnl_Id="39">
+<LocList>
+<Loc EndOffset="137" SrcFileId="2" StartOffset="126"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S2" CovItemPrefix="Calculator.model.Equation.java" Intrnl_Id="40">
+<LocList>
+<Loc EndOffset="152" SrcFileId="2" StartOffset="141"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S3" CovItemPrefix="Calculator.model.Equation.java" Intrnl_Id="41">
+<LocList>
+<Loc EndOffset="167" SrcFileId="2" StartOffset="156"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</HierarchyLvl>
+<HierarchyLvl HierarchyLvlId="2113" HierarchyLvlTypeId="11" Intrnl_Id="42" Name="getA">
+<Header>
+<Loc EndOffset="196" SrcFileId="2" StartOffset="176"/>
+</Header>
+<LocList>
+<Loc EndOffset="215" SrcFileId="2" StartOffset="176"/>
+</LocList>
+<StmntSeq Intrnl_Id="43">
+<LocList>
+<Loc EndOffset="211" SrcFileId="2" StartOffset="202"/>
+</LocList>
+<BasicStmnt CovItemId="S4" CovItemPrefix="Calculator.model.Equation.java" Intrnl_Id="44">
+<LocList>
+<Loc EndOffset="211" SrcFileId="2" StartOffset="202"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</HierarchyLvl>
+<HierarchyLvl HierarchyLvlId="2114" HierarchyLvlTypeId="11" Intrnl_Id="45" Name="getB">
+<Header>
+<Loc EndOffset="240" SrcFileId="2" StartOffset="220"/>
+</Header>
+<LocList>
+<Loc EndOffset="259" SrcFileId="2" StartOffset="220"/>
+</LocList>
+<StmntSeq Intrnl_Id="46">
+<LocList>
+<Loc EndOffset="255" SrcFileId="2" StartOffset="246"/>
+</LocList>
+<BasicStmnt CovItemId="S5" CovItemPrefix="Calculator.model.Equation.java" Intrnl_Id="47">
+<LocList>
+<Loc EndOffset="255" SrcFileId="2" StartOffset="246"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</HierarchyLvl>
+<HierarchyLvl HierarchyLvlId="2115" HierarchyLvlTypeId="11" Intrnl_Id="48" Name="getC">
+<Header>
+<Loc EndOffset="284" SrcFileId="2" StartOffset="264"/>
+</Header>
+<LocList>
+<Loc EndOffset="303" SrcFileId="2" StartOffset="264"/>
+</LocList>
+<StmntSeq Intrnl_Id="49">
+<LocList>
+<Loc EndOffset="299" SrcFileId="2" StartOffset="290"/>
+</LocList>
+<BasicStmnt CovItemId="S6" CovItemPrefix="Calculator.model.Equation.java" Intrnl_Id="50">
+<LocList>
+<Loc EndOffset="299" SrcFileId="2" StartOffset="290"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</HierarchyLvl>
+</HierarchyLvl>
+<HierarchyLvl HierarchyLvlId="2119" HierarchyLvlTypeId="12" Intrnl_Id="51" Name="EquationDiscriminantCalculator">
+<Header>
+<Loc EndOffset="138" SrcFileId="3" StartOffset="95"/>
+</Header>
+<LocList>
+<Loc EndOffset="633" SrcFileId="3" StartOffset="95"/>
+</LocList>
+<HierarchyLvl HierarchyLvlId="2117" HierarchyLvlTypeId="11" Intrnl_Id="52" Name="EquationDiscriminantCalculator">
+<Header>
+<Loc EndOffset="219" SrcFileId="3" StartOffset="163"/>
+</Header>
+<LocList>
+<Loc EndOffset="297" SrcFileId="3" StartOffset="163"/>
+</LocList>
+<StmntSeq Intrnl_Id="53">
+<LocList>
+<Loc EndOffset="245" SrcFileId="3" StartOffset="225"/>
+<Loc EndOffset="269" SrcFileId="3" StartOffset="249"/>
+<Loc EndOffset="293" SrcFileId="3" StartOffset="273"/>
+</LocList>
+<BasicStmnt CovItemId="S1" CovItemPrefix="Calculator.model.EquationDiscriminantCalculator.java" Intrnl_Id="54">
+<LocList>
+<Loc EndOffset="245" SrcFileId="3" StartOffset="225"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S2" CovItemPrefix="Calculator.model.EquationDiscriminantCalculator.java" Intrnl_Id="55">
+<LocList>
+<Loc EndOffset="269" SrcFileId="3" StartOffset="249"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S3" CovItemPrefix="Calculator.model.EquationDiscriminantCalculator.java" Intrnl_Id="56">
+<LocList>
+<Loc EndOffset="293" SrcFileId="3" StartOffset="273"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</HierarchyLvl>
+<HierarchyLvl HierarchyLvlId="2118" HierarchyLvlTypeId="11" Intrnl_Id="57" Name="getDiscriminant">
+<Header>
+<Loc EndOffset="369" SrcFileId="3" StartOffset="302"/>
+</Header>
+<LocList>
+<Loc EndOffset="630" SrcFileId="3" StartOffset="302"/>
+</LocList>
+<StmntSeq Intrnl_Id="58">
+<LocList>
+<Loc EndOffset="439" SrcFileId="3" StartOffset="375"/>
+<Loc EndOffset="492" SrcFileId="3" StartOffset="443"/>
+<Loc EndOffset="545" SrcFileId="3" StartOffset="496"/>
+<Loc EndOffset="579" SrcFileId="3" StartOffset="549"/>
+<Loc EndOffset="626" SrcFileId="3" StartOffset="583"/>
+</LocList>
+<CondStmnt CovItemId="S4" CovItemPrefix="Calculator.model.EquationDiscriminantCalculator.java" Intrnl_Id="59">
+<Branch CovItemId="B1" CovItemPrefix="Calculator.model.EquationDiscriminantCalculator.java" Implct="false" Intrnl_Id="60">
+<Cond/>
+<LocList>
+<Loc EndOffset="439" SrcFileId="3" StartOffset="387"/>
+</LocList>
+<StmntSeq Intrnl_Id="61">
+<LocList>
+<Loc EndOffset="434" SrcFileId="3" StartOffset="393"/>
+</LocList>
+<BasicStmnt CovItemId="S5" CovItemPrefix="Calculator.model.EquationDiscriminantCalculator.java" Intrnl_Id="62">
+<LocList>
+<Loc EndOffset="434" SrcFileId="3" StartOffset="393"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</Branch>
+<Branch CovItemId="B2" CovItemPrefix="Calculator.model.EquationDiscriminantCalculator.java" Implct="true" Intrnl_Id="63">
+<Cond/>
+<LocList/>
+<StmntSeq Intrnl_Id="64">
+<LocList/>
+</StmntSeq>
+</Branch>
+<Keyword EndOffset="377" SrcFileId="3" StartOffset="375"/>
+<LocList>
+<Loc EndOffset="439" SrcFileId="3" StartOffset="375"/>
+</LocList>
+<RootTerm CovItemId="C1" CovItemPrefix="Calculator.model.EquationDiscriminantCalculator.java" Intrnl_Id="65">
+<BasicBoolTerm Intrnl_Id="66">
+<LocList>
+<Loc EndOffset="385" SrcFileId="3" StartOffset="379"/>
+</LocList>
+</BasicBoolTerm>
+</RootTerm>
+</CondStmnt>
+<BasicStmnt CovItemId="S6" CovItemPrefix="Calculator.model.EquationDiscriminantCalculator.java" Intrnl_Id="67">
+<LocList>
+<Loc EndOffset="492" SrcFileId="3" StartOffset="443"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S7" CovItemPrefix="Calculator.model.EquationDiscriminantCalculator.java" Intrnl_Id="68">
+<LocList>
+<Loc EndOffset="545" SrcFileId="3" StartOffset="496"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S8" CovItemPrefix="Calculator.model.EquationDiscriminantCalculator.java" Intrnl_Id="69">
+<LocList>
+<Loc EndOffset="579" SrcFileId="3" StartOffset="549"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S9" CovItemPrefix="Calculator.model.EquationDiscriminantCalculator.java" Intrnl_Id="70">
+<LocList>
+<Loc EndOffset="626" SrcFileId="3" StartOffset="583"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</HierarchyLvl>
+</HierarchyLvl>
+<HierarchyLvl HierarchyLvlId="2123" HierarchyLvlTypeId="12" Intrnl_Id="71" Name="FirstDegreeEquationCalculator">
+<Header>
+<Loc EndOffset="139" SrcFileId="4" StartOffset="97"/>
+</Header>
+<LocList>
+<Loc EndOffset="700" SrcFileId="4" StartOffset="97"/>
+</LocList>
+<HierarchyLvl HierarchyLvlId="2120" HierarchyLvlTypeId="11" Intrnl_Id="72" Name="FirstDegreeEquationCalculator">
+<Header>
+<Loc EndOffset="256" SrcFileId="4" StartOffset="201"/>
+</Header>
+<LocList>
+<Loc EndOffset="334" SrcFileId="4" StartOffset="201"/>
+</LocList>
+<StmntSeq Intrnl_Id="73">
+<LocList>
+<Loc EndOffset="282" SrcFileId="4" StartOffset="262"/>
+<Loc EndOffset="306" SrcFileId="4" StartOffset="286"/>
+<Loc EndOffset="330" SrcFileId="4" StartOffset="310"/>
+</LocList>
+<BasicStmnt CovItemId="S1" CovItemPrefix="Calculator.model.FirstDegreeEquationCalculator.java" Intrnl_Id="74">
+<LocList>
+<Loc EndOffset="282" SrcFileId="4" StartOffset="262"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S2" CovItemPrefix="Calculator.model.FirstDegreeEquationCalculator.java" Intrnl_Id="75">
+<LocList>
+<Loc EndOffset="306" SrcFileId="4" StartOffset="286"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S3" CovItemPrefix="Calculator.model.FirstDegreeEquationCalculator.java" Intrnl_Id="76">
+<LocList>
+<Loc EndOffset="330" SrcFileId="4" StartOffset="310"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</HierarchyLvl>
+<HierarchyLvl HierarchyLvlId="2121" HierarchyLvlTypeId="11" Intrnl_Id="77" Name="startSolving">
+<Header>
+<Loc EndOffset="404" SrcFileId="4" StartOffset="339"/>
+</Header>
+<LocList>
+<Loc EndOffset="575" SrcFileId="4" StartOffset="339"/>
+</LocList>
+<StmntSeq Intrnl_Id="78">
+<LocList>
+<Loc EndOffset="486" SrcFileId="4" StartOffset="410"/>
+<Loc EndOffset="539" SrcFileId="4" StartOffset="490"/>
+<Loc EndOffset="571" SrcFileId="4" StartOffset="543"/>
+</LocList>
+<CondStmnt CovItemId="S4" CovItemPrefix="Calculator.model.FirstDegreeEquationCalculator.java" Intrnl_Id="79">
+<Branch CovItemId="B1" CovItemPrefix="Calculator.model.FirstDegreeEquationCalculator.java" Implct="false" Intrnl_Id="80">
+<Cond/>
+<LocList>
+<Loc EndOffset="486" SrcFileId="4" StartOffset="432"/>
+</LocList>
+<StmntSeq Intrnl_Id="81">
+<LocList>
+<Loc EndOffset="481" SrcFileId="4" StartOffset="438"/>
+</LocList>
+<BasicStmnt CovItemId="S5" CovItemPrefix="Calculator.model.FirstDegreeEquationCalculator.java" Intrnl_Id="82">
+<LocList>
+<Loc EndOffset="481" SrcFileId="4" StartOffset="438"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</Branch>
+<Branch CovItemId="B2" CovItemPrefix="Calculator.model.FirstDegreeEquationCalculator.java" Implct="true" Intrnl_Id="83">
+<Cond/>
+<LocList/>
+<StmntSeq Intrnl_Id="84">
+<LocList/>
+</StmntSeq>
+</Branch>
+<Keyword EndOffset="412" SrcFileId="4" StartOffset="410"/>
+<LocList>
+<Loc EndOffset="486" SrcFileId="4" StartOffset="410"/>
+</LocList>
+<RootTerm CovItemId="C1" CovItemPrefix="Calculator.model.FirstDegreeEquationCalculator.java" Intrnl_Id="85">
+<OpTerm BooleanOpId="9" Intrnl_Id="86">
+<BasicBoolTerm Intrnl_Id="87">
+<LocList>
+<Loc EndOffset="420" SrcFileId="4" StartOffset="414"/>
+</LocList>
+</BasicBoolTerm>
+<BasicBoolTerm Intrnl_Id="88">
+<LocList>
+<Loc EndOffset="430" SrcFileId="4" StartOffset="424"/>
+</LocList>
+</BasicBoolTerm>
+<LocList>
+<Loc EndOffset="423" SrcFileId="4" StartOffset="421"/>
+</LocList>
+</OpTerm>
+</RootTerm>
+</CondStmnt>
+<BasicStmnt CovItemId="S6" CovItemPrefix="Calculator.model.FirstDegreeEquationCalculator.java" Intrnl_Id="89">
+<LocList>
+<Loc EndOffset="539" SrcFileId="4" StartOffset="490"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S7" CovItemPrefix="Calculator.model.FirstDegreeEquationCalculator.java" Intrnl_Id="90">
+<LocList>
+<Loc EndOffset="571" SrcFileId="4" StartOffset="543"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</HierarchyLvl>
+<HierarchyLvl HierarchyLvlId="2122" HierarchyLvlTypeId="11" Intrnl_Id="91" Name="getSolution">
+<Header>
+<Loc EndOffset="645" SrcFileId="4" StartOffset="580"/>
+</Header>
+<LocList>
+<Loc EndOffset="695" SrcFileId="4" StartOffset="580"/>
+</LocList>
+<StmntSeq Intrnl_Id="92">
+<LocList>
+<Loc EndOffset="671" SrcFileId="4" StartOffset="651"/>
+<Loc EndOffset="691" SrcFileId="4" StartOffset="675"/>
+</LocList>
+<BasicStmnt CovItemId="S8" CovItemPrefix="Calculator.model.FirstDegreeEquationCalculator.java" Intrnl_Id="93">
+<LocList>
+<Loc EndOffset="671" SrcFileId="4" StartOffset="651"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S9" CovItemPrefix="Calculator.model.FirstDegreeEquationCalculator.java" Intrnl_Id="94">
+<LocList>
+<Loc EndOffset="691" SrcFileId="4" StartOffset="675"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</HierarchyLvl>
+</HierarchyLvl>
+<HierarchyLvl HierarchyLvlId="2132" HierarchyLvlTypeId="12" Intrnl_Id="95" Name="QuadraticEquatioCalculator">
+<Header>
+<Loc EndOffset="134" SrcFileId="5" StartOffset="95"/>
+</Header>
+<LocList>
+<Loc EndOffset="1662" SrcFileId="5" StartOffset="95"/>
+</LocList>
+<HierarchyLvl HierarchyLvlId="2124" HierarchyLvlTypeId="11" Intrnl_Id="96" Name="QuadraticEquatioCalculator">
+<Header>
+<Loc EndOffset="487" SrcFileId="5" StartOffset="353"/>
+</Header>
+<LocList>
+<Loc EndOffset="572" SrcFileId="5" StartOffset="353"/>
+</LocList>
+<StmntSeq Intrnl_Id="97">
+<LocList>
+<Loc EndOffset="506" SrcFileId="5" StartOffset="493"/>
+<Loc EndOffset="522" SrcFileId="5" StartOffset="510"/>
+<Loc EndOffset="541" SrcFileId="5" StartOffset="526"/>
+<Loc EndOffset="568" SrcFileId="5" StartOffset="545"/>
+</LocList>
+<BasicStmnt CovItemId="S1" CovItemPrefix="Calculator.model.QuadraticEquatioCalculator.java" Intrnl_Id="98">
+<LocList>
+<Loc EndOffset="506" SrcFileId="5" StartOffset="493"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S2" CovItemPrefix="Calculator.model.QuadraticEquatioCalculator.java" Intrnl_Id="99">
+<LocList>
+<Loc EndOffset="522" SrcFileId="5" StartOffset="510"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S3" CovItemPrefix="Calculator.model.QuadraticEquatioCalculator.java" Intrnl_Id="100">
+<LocList>
+<Loc EndOffset="541" SrcFileId="5" StartOffset="526"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S4" CovItemPrefix="Calculator.model.QuadraticEquatioCalculator.java" Intrnl_Id="101">
+<LocList>
+<Loc EndOffset="568" SrcFileId="5" StartOffset="545"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</HierarchyLvl>
+<HierarchyLvl HierarchyLvlId="2125" HierarchyLvlTypeId="11" Intrnl_Id="102" Name="startSolving">
+<Header>
+<Loc EndOffset="640" SrcFileId="5" StartOffset="578"/>
+</Header>
+<LocList>
+<Loc EndOffset="1011" SrcFileId="5" StartOffset="578"/>
+</LocList>
+<StmntSeq Intrnl_Id="103">
+<LocList>
+<Loc EndOffset="686" SrcFileId="5" StartOffset="645"/>
+<Loc EndOffset="1007" SrcFileId="5" StartOffset="690"/>
+</LocList>
+<BasicStmnt CovItemId="S5" CovItemPrefix="Calculator.model.QuadraticEquatioCalculator.java" Intrnl_Id="104">
+<LocList>
+<Loc EndOffset="686" SrcFileId="5" StartOffset="645"/>
+</LocList>
+</BasicStmnt>
+<CondStmnt CovItemId="S6" CovItemPrefix="Calculator.model.QuadraticEquatioCalculator.java" Intrnl_Id="105">
+<Branch CovItemId="B1" CovItemPrefix="Calculator.model.QuadraticEquatioCalculator.java" Implct="false" Intrnl_Id="106">
+<Cond/>
+<LocList>
+<Loc EndOffset="791" SrcFileId="5" StartOffset="717"/>
+</LocList>
+<StmntSeq Intrnl_Id="107">
+<LocList>
+<Loc EndOffset="743" SrcFileId="5" StartOffset="723"/>
+<Loc EndOffset="764" SrcFileId="5" StartOffset="748"/>
+<Loc EndOffset="786" SrcFileId="5" StartOffset="769"/>
+</LocList>
+<BasicStmnt CovItemId="S7" CovItemPrefix="Calculator.model.QuadraticEquatioCalculator.java" Intrnl_Id="108">
+<LocList>
+<Loc EndOffset="743" SrcFileId="5" StartOffset="723"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S8" CovItemPrefix="Calculator.model.QuadraticEquatioCalculator.java" Intrnl_Id="109">
+<LocList>
+<Loc EndOffset="764" SrcFileId="5" StartOffset="748"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S9" CovItemPrefix="Calculator.model.QuadraticEquatioCalculator.java" Intrnl_Id="110">
+<LocList>
+<Loc EndOffset="786" SrcFileId="5" StartOffset="769"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</Branch>
+<Branch CovItemId="B2" CovItemPrefix="Calculator.model.QuadraticEquatioCalculator.java" Implct="false" Intrnl_Id="111">
+<Cond>
+<Loc EndOffset="803" SrcFileId="5" StartOffset="799"/>
+</Cond>
+<LocList>
+<Loc EndOffset="1007" SrcFileId="5" StartOffset="804"/>
+</LocList>
+<StmntSeq Intrnl_Id="112">
+<LocList>
+<Loc EndOffset="1007" SrcFileId="5" StartOffset="804"/>
+</LocList>
+<CondStmnt CovItemId="S10" CovItemPrefix="Calculator.model.QuadraticEquatioCalculator.java" Intrnl_Id="113">
+<Branch CovItemId="B3" CovItemPrefix="Calculator.model.QuadraticEquatioCalculator.java" Implct="false" Intrnl_Id="114">
+<Cond/>
+<LocList>
+<Loc EndOffset="906" SrcFileId="5" StartOffset="832"/>
+</LocList>
+<StmntSeq Intrnl_Id="115">
+<LocList>
+<Loc EndOffset="858" SrcFileId="5" StartOffset="838"/>
+<Loc EndOffset="879" SrcFileId="5" StartOffset="863"/>
+<Loc EndOffset="901" SrcFileId="5" StartOffset="884"/>
+</LocList>
+<BasicStmnt CovItemId="S11" CovItemPrefix="Calculator.model.QuadraticEquatioCalculator.java" Intrnl_Id="116">
+<LocList>
+<Loc EndOffset="858" SrcFileId="5" StartOffset="838"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S12" CovItemPrefix="Calculator.model.QuadraticEquatioCalculator.java" Intrnl_Id="117">
+<LocList>
+<Loc EndOffset="879" SrcFileId="5" StartOffset="863"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S13" CovItemPrefix="Calculator.model.QuadraticEquatioCalculator.java" Intrnl_Id="118">
+<LocList>
+<Loc EndOffset="901" SrcFileId="5" StartOffset="884"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</Branch>
+<Branch CovItemId="B4" CovItemPrefix="Calculator.model.QuadraticEquatioCalculator.java" Implct="false" Intrnl_Id="119">
+<Cond>
+<Loc EndOffset="914" SrcFileId="5" StartOffset="910"/>
+</Cond>
+<LocList>
+<Loc EndOffset="1007" SrcFileId="5" StartOffset="915"/>
+</LocList>
+<StmntSeq Intrnl_Id="120">
+<LocList>
+<Loc EndOffset="941" SrcFileId="5" StartOffset="921"/>
+<Loc EndOffset="975" SrcFileId="5" StartOffset="946"/>
+<Loc EndOffset="1002" SrcFileId="5" StartOffset="980"/>
+</LocList>
+<BasicStmnt CovItemId="S14" CovItemPrefix="Calculator.model.QuadraticEquatioCalculator.java" Intrnl_Id="121">
+<LocList>
+<Loc EndOffset="941" SrcFileId="5" StartOffset="921"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S15" CovItemPrefix="Calculator.model.QuadraticEquatioCalculator.java" Intrnl_Id="122">
+<LocList>
+<Loc EndOffset="975" SrcFileId="5" StartOffset="946"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S16" CovItemPrefix="Calculator.model.QuadraticEquatioCalculator.java" Intrnl_Id="123">
+<LocList>
+<Loc EndOffset="1002" SrcFileId="5" StartOffset="980"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</Branch>
+<Keyword EndOffset="806" SrcFileId="5" StartOffset="804"/>
+<LocList>
+<Loc EndOffset="1007" SrcFileId="5" StartOffset="804"/>
+</LocList>
+<RootTerm CovItemId="C2" CovItemPrefix="Calculator.model.QuadraticEquatioCalculator.java" Intrnl_Id="124">
+<BasicBoolTerm Intrnl_Id="125">
+<LocList>
+<Loc EndOffset="830" SrcFileId="5" StartOffset="808"/>
+</LocList>
+</BasicBoolTerm>
+</RootTerm>
+</CondStmnt>
+</StmntSeq>
+</Branch>
+<Keyword EndOffset="692" SrcFileId="5" StartOffset="690"/>
+<LocList>
+<Loc EndOffset="1007" SrcFileId="5" StartOffset="690"/>
+</LocList>
+<RootTerm CovItemId="C1" CovItemPrefix="Calculator.model.QuadraticEquatioCalculator.java" Intrnl_Id="126">
+<BasicBoolTerm Intrnl_Id="127">
+<LocList>
+<Loc EndOffset="715" SrcFileId="5" StartOffset="694"/>
+</LocList>
+</BasicBoolTerm>
+</RootTerm>
+</CondStmnt>
+</StmntSeq>
+</HierarchyLvl>
+<HierarchyLvl HierarchyLvlId="2126" HierarchyLvlTypeId="11" Intrnl_Id="128" Name="firstSolution">
+<Header>
+<Loc EndOffset="1045" SrcFileId="5" StartOffset="1017"/>
+</Header>
+<LocList>
+<Loc EndOffset="1165" SrcFileId="5" StartOffset="1017"/>
+</LocList>
+<StmntSeq Intrnl_Id="129">
+<LocList>
+<Loc EndOffset="1161" SrcFileId="5" StartOffset="1051"/>
+</LocList>
+<BasicStmnt CovItemId="S17" CovItemPrefix="Calculator.model.QuadraticEquatioCalculator.java" Intrnl_Id="130">
+<LocList>
+<Loc EndOffset="1161" SrcFileId="5" StartOffset="1051"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</HierarchyLvl>
+<HierarchyLvl HierarchyLvlId="2127" HierarchyLvlTypeId="11" Intrnl_Id="131" Name="secondSolution">
+<Header>
+<Loc EndOffset="1200" SrcFileId="5" StartOffset="1171"/>
+</Header>
+<LocList>
+<Loc EndOffset="1395" SrcFileId="5" StartOffset="1171"/>
+</LocList>
+<StmntSeq Intrnl_Id="132">
+<LocList>
+<Loc EndOffset="1282" SrcFileId="5" StartOffset="1206"/>
+<Loc EndOffset="1391" SrcFileId="5" StartOffset="1286"/>
+</LocList>
+<CondStmnt CovItemId="S18" CovItemPrefix="Calculator.model.QuadraticEquatioCalculator.java" Intrnl_Id="133">
+<Branch CovItemId="B5" CovItemPrefix="Calculator.model.QuadraticEquatioCalculator.java" Implct="false" Intrnl_Id="134">
+<Cond/>
+<LocList>
+<Loc EndOffset="1282" SrcFileId="5" StartOffset="1237"/>
+</LocList>
+<StmntSeq Intrnl_Id="135">
+<LocList>
+<Loc EndOffset="1265" SrcFileId="5" StartOffset="1243"/>
+<Loc EndOffset="1277" SrcFileId="5" StartOffset="1270"/>
+</LocList>
+<BasicStmnt CovItemId="S19" CovItemPrefix="Calculator.model.QuadraticEquatioCalculator.java" Intrnl_Id="136">
+<LocList>
+<Loc EndOffset="1265" SrcFileId="5" StartOffset="1243"/>
+</LocList>
+</BasicStmnt>
+<BasicStmnt CovItemId="S20" CovItemPrefix="Calculator.model.QuadraticEquatioCalculator.java" Intrnl_Id="137">
+<LocList>
+<Loc EndOffset="1277" SrcFileId="5" StartOffset="1270"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</Branch>
+<Branch CovItemId="B6" CovItemPrefix="Calculator.model.QuadraticEquatioCalculator.java" Implct="true" Intrnl_Id="138">
+<Cond/>
+<LocList/>
+<StmntSeq Intrnl_Id="139">
+<LocList/>
+</StmntSeq>
+</Branch>
+<Keyword EndOffset="1208" SrcFileId="5" StartOffset="1206"/>
+<LocList>
+<Loc EndOffset="1282" SrcFileId="5" StartOffset="1206"/>
+</LocList>
+<RootTerm CovItemId="C3" CovItemPrefix="Calculator.model.QuadraticEquatioCalculator.java" Intrnl_Id="140">
+<BasicBoolTerm Intrnl_Id="141">
+<LocList>
+<Loc EndOffset="1235" SrcFileId="5" StartOffset="1210"/>
+</LocList>
+</BasicBoolTerm>
+</RootTerm>
+</CondStmnt>
+<BasicStmnt CovItemId="S21" CovItemPrefix="Calculator.model.QuadraticEquatioCalculator.java" Intrnl_Id="142">
+<LocList>
+<Loc EndOffset="1391" SrcFileId="5" StartOffset="1286"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</HierarchyLvl>
+<HierarchyLvl HierarchyLvlId="2128" HierarchyLvlTypeId="11" Intrnl_Id="143" Name="getSolution1">
+<Header>
+<Loc EndOffset="1428" SrcFileId="5" StartOffset="1400"/>
+</Header>
+<LocList>
+<Loc EndOffset="1455" SrcFileId="5" StartOffset="1400"/>
+</LocList>
+<StmntSeq Intrnl_Id="144">
+<LocList>
+<Loc EndOffset="1451" SrcFileId="5" StartOffset="1434"/>
+</LocList>
+<BasicStmnt CovItemId="S22" CovItemPrefix="Calculator.model.QuadraticEquatioCalculator.java" Intrnl_Id="145">
+<LocList>
+<Loc EndOffset="1451" SrcFileId="5" StartOffset="1434"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</HierarchyLvl>
+<HierarchyLvl HierarchyLvlId="2129" HierarchyLvlTypeId="11" Intrnl_Id="146" Name="getSolution2">
+<Header>
+<Loc EndOffset="1488" SrcFileId="5" StartOffset="1460"/>
+</Header>
+<LocList>
+<Loc EndOffset="1515" SrcFileId="5" StartOffset="1460"/>
+</LocList>
+<StmntSeq Intrnl_Id="147">
+<LocList>
+<Loc EndOffset="1511" SrcFileId="5" StartOffset="1494"/>
+</LocList>
+<BasicStmnt CovItemId="S23" CovItemPrefix="Calculator.model.QuadraticEquatioCalculator.java" Intrnl_Id="148">
+<LocList>
+<Loc EndOffset="1511" SrcFileId="5" StartOffset="1494"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</HierarchyLvl>
+<HierarchyLvl HierarchyLvlId="2130" HierarchyLvlTypeId="11" Intrnl_Id="149" Name="getNumberOfSolutions">
+<Header>
+<Loc EndOffset="1554" SrcFileId="5" StartOffset="1521"/>
+</Header>
+<LocList>
+<Loc EndOffset="1589" SrcFileId="5" StartOffset="1521"/>
+</LocList>
+<StmntSeq Intrnl_Id="150">
+<LocList>
+<Loc EndOffset="1585" SrcFileId="5" StartOffset="1560"/>
+</LocList>
+<BasicStmnt CovItemId="S24" CovItemPrefix="Calculator.model.QuadraticEquatioCalculator.java" Intrnl_Id="151">
+<LocList>
+<Loc EndOffset="1585" SrcFileId="5" StartOffset="1560"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</HierarchyLvl>
+<HierarchyLvl HierarchyLvlId="2131" HierarchyLvlTypeId="11" Intrnl_Id="152" Name="getDiscriminant">
+<Header>
+<Loc EndOffset="1626" SrcFileId="5" StartOffset="1595"/>
+</Header>
+<LocList>
+<Loc EndOffset="1656" SrcFileId="5" StartOffset="1595"/>
+</LocList>
+<StmntSeq Intrnl_Id="153">
+<LocList>
+<Loc EndOffset="1652" SrcFileId="5" StartOffset="1632"/>
+</LocList>
+<BasicStmnt CovItemId="S25" CovItemPrefix="Calculator.model.QuadraticEquatioCalculator.java" Intrnl_Id="154">
+<LocList>
+<Loc EndOffset="1652" SrcFileId="5" StartOffset="1632"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</HierarchyLvl>
+</HierarchyLvl>
+<HierarchyLvl HierarchyLvlId="2138" HierarchyLvlTypeId="12" Intrnl_Id="155" Name="StandardCalculator">
+<Header>
+<Loc EndOffset="60" SrcFileId="6" StartOffset="29"/>
+</Header>
+<LocList>
+<Loc EndOffset="706" SrcFileId="6" StartOffset="29"/>
+</LocList>
+<HierarchyLvl HierarchyLvlId="2133" HierarchyLvlTypeId="11" Intrnl_Id="156" Name="sum">
+<Header>
+<Loc EndOffset="116" SrcFileId="6" StartOffset="67"/>
+</Header>
+<LocList>
+<Loc EndOffset="151" SrcFileId="6" StartOffset="67"/>
+</LocList>
+<StmntSeq Intrnl_Id="157">
+<LocList>
+<Loc EndOffset="147" SrcFileId="6" StartOffset="122"/>
+</LocList>
+<BasicStmnt CovItemId="S1" CovItemPrefix="Calculator.model.StandardCalculator.java" Intrnl_Id="158">
+<LocList>
+<Loc EndOffset="147" SrcFileId="6" StartOffset="122"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</HierarchyLvl>
+<HierarchyLvl HierarchyLvlId="2134" HierarchyLvlTypeId="11" Intrnl_Id="159" Name="subtract">
+<Header>
+<Loc EndOffset="210" SrcFileId="6" StartOffset="156"/>
+</Header>
+<LocList>
+<Loc EndOffset="245" SrcFileId="6" StartOffset="156"/>
+</LocList>
+<StmntSeq Intrnl_Id="160">
+<LocList>
+<Loc EndOffset="241" SrcFileId="6" StartOffset="216"/>
+</LocList>
+<BasicStmnt CovItemId="S2" CovItemPrefix="Calculator.model.StandardCalculator.java" Intrnl_Id="161">
+<LocList>
+<Loc EndOffset="241" SrcFileId="6" StartOffset="216"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</HierarchyLvl>
+<HierarchyLvl HierarchyLvlId="2135" HierarchyLvlTypeId="11" Intrnl_Id="162" Name="mul">
+<Header>
+<Loc EndOffset="299" SrcFileId="6" StartOffset="250"/>
+</Header>
+<LocList>
+<Loc EndOffset="334" SrcFileId="6" StartOffset="250"/>
+</LocList>
+<StmntSeq Intrnl_Id="163">
+<LocList>
+<Loc EndOffset="330" SrcFileId="6" StartOffset="305"/>
+</LocList>
+<BasicStmnt CovItemId="S3" CovItemPrefix="Calculator.model.StandardCalculator.java" Intrnl_Id="164">
+<LocList>
+<Loc EndOffset="330" SrcFileId="6" StartOffset="305"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</HierarchyLvl>
+<HierarchyLvl HierarchyLvlId="2136" HierarchyLvlTypeId="11" Intrnl_Id="165" Name="divide">
+<Header>
+<Loc EndOffset="391" SrcFileId="6" StartOffset="339"/>
+</Header>
+<LocList>
+<Loc EndOffset="520" SrcFileId="6" StartOffset="339"/>
+</LocList>
+<StmntSeq Intrnl_Id="166">
+<LocList>
+<Loc EndOffset="451" SrcFileId="6" StartOffset="397"/>
+<Loc EndOffset="516" SrcFileId="6" StartOffset="455"/>
+</LocList>
+<CondStmnt CovItemId="S4" CovItemPrefix="Calculator.model.StandardCalculator.java" Intrnl_Id="167">
+<Branch CovItemId="B1" CovItemPrefix="Calculator.model.StandardCalculator.java" Implct="false" Intrnl_Id="168">
+<Cond/>
+<LocList>
+<Loc EndOffset="451" SrcFileId="6" StartOffset="415"/>
+</LocList>
+<StmntSeq Intrnl_Id="169">
+<LocList>
+<Loc EndOffset="446" SrcFileId="6" StartOffset="421"/>
+</LocList>
+<BasicStmnt CovItemId="S5" CovItemPrefix="Calculator.model.StandardCalculator.java" Intrnl_Id="170">
+<LocList>
+<Loc EndOffset="446" SrcFileId="6" StartOffset="421"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</Branch>
+<Branch CovItemId="B2" CovItemPrefix="Calculator.model.StandardCalculator.java" Implct="true" Intrnl_Id="171">
+<Cond/>
+<LocList/>
+<StmntSeq Intrnl_Id="172">
+<LocList/>
+</StmntSeq>
+</Branch>
+<Keyword EndOffset="399" SrcFileId="6" StartOffset="397"/>
+<LocList>
+<Loc EndOffset="451" SrcFileId="6" StartOffset="397"/>
+</LocList>
+<RootTerm CovItemId="C1" CovItemPrefix="Calculator.model.StandardCalculator.java" Intrnl_Id="173">
+<BasicBoolTerm Intrnl_Id="174">
+<LocList>
+<Loc EndOffset="413" SrcFileId="6" StartOffset="401"/>
+</LocList>
+</BasicBoolTerm>
+</RootTerm>
+</CondStmnt>
+<BasicStmnt CovItemId="S6" CovItemPrefix="Calculator.model.StandardCalculator.java" Intrnl_Id="175">
+<LocList>
+<Loc EndOffset="516" SrcFileId="6" StartOffset="455"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</HierarchyLvl>
+<HierarchyLvl HierarchyLvlId="2137" HierarchyLvlTypeId="11" Intrnl_Id="176" Name="mod">
+<Header>
+<Loc EndOffset="574" SrcFileId="6" StartOffset="525"/>
+</Header>
+<LocList>
+<Loc EndOffset="703" SrcFileId="6" StartOffset="525"/>
+</LocList>
+<StmntSeq Intrnl_Id="177">
+<LocList>
+<Loc EndOffset="634" SrcFileId="6" StartOffset="580"/>
+<Loc EndOffset="699" SrcFileId="6" StartOffset="638"/>
+</LocList>
+<CondStmnt CovItemId="S7" CovItemPrefix="Calculator.model.StandardCalculator.java" Intrnl_Id="178">
+<Branch CovItemId="B3" CovItemPrefix="Calculator.model.StandardCalculator.java" Implct="false" Intrnl_Id="179">
+<Cond/>
+<LocList>
+<Loc EndOffset="634" SrcFileId="6" StartOffset="598"/>
+</LocList>
+<StmntSeq Intrnl_Id="180">
+<LocList>
+<Loc EndOffset="629" SrcFileId="6" StartOffset="604"/>
+</LocList>
+<BasicStmnt CovItemId="S8" CovItemPrefix="Calculator.model.StandardCalculator.java" Intrnl_Id="181">
+<LocList>
+<Loc EndOffset="629" SrcFileId="6" StartOffset="604"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</Branch>
+<Branch CovItemId="B4" CovItemPrefix="Calculator.model.StandardCalculator.java" Implct="true" Intrnl_Id="182">
+<Cond/>
+<LocList/>
+<StmntSeq Intrnl_Id="183">
+<LocList/>
+</StmntSeq>
+</Branch>
+<Keyword EndOffset="582" SrcFileId="6" StartOffset="580"/>
+<LocList>
+<Loc EndOffset="634" SrcFileId="6" StartOffset="580"/>
+</LocList>
+<RootTerm CovItemId="C2" CovItemPrefix="Calculator.model.StandardCalculator.java" Intrnl_Id="184">
+<BasicBoolTerm Intrnl_Id="185">
+<LocList>
+<Loc EndOffset="596" SrcFileId="6" StartOffset="584"/>
+</LocList>
+</BasicBoolTerm>
+</RootTerm>
+</CondStmnt>
+<BasicStmnt CovItemId="S9" CovItemPrefix="Calculator.model.StandardCalculator.java" Intrnl_Id="186">
+<LocList>
+<Loc EndOffset="699" SrcFileId="6" StartOffset="638"/>
+</LocList>
+</BasicStmnt>
+</StmntSeq>
+</HierarchyLvl>
+</HierarchyLvl>
+</HierarchyLvl>
+</HierarchyLvl>
+</HierarchyLvl>
+</MASTRoot>
+</TestSessionContainer>

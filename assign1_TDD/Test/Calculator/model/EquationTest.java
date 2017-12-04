@@ -29,6 +29,21 @@ public class EquationTest {
 		}
 
 	}
+	
+	@Test
+	public void setABC_RandomABC_SetABC() {
+		sut = new Equation(1.3, 2.05, -3);
+		sut.setABC(1.1, 2.23, 11.1);
+		double actual = sut.getA();
+		double expected = 1.1;
+		assertTrue(printTip(expected, actual), doublecomparision(expected, actual));
+		actual = sut.getB();
+		expected = 2.23;
+		assertTrue(printTip(expected, actual), doublecomparision(expected, actual));
+		actual = sut.getC();
+		expected = 11.1;
+		assertTrue(printTip(expected, actual), doublecomparision(expected, actual));
+	}
 
 	private boolean doublecomparision(double expected, double actual) {
 		double c = expected - actual;

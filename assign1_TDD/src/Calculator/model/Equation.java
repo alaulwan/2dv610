@@ -21,4 +21,9 @@ public class Equation {
 		return c;
 	}
 
+	public void setABC(double d, double e, double f) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
