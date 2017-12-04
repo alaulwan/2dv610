@@ -47,11 +47,9 @@ public class EnglishView {
 		}
 
 	}
-	
+
 	public void printText(String text) {
-		String t = text;
-		printer.println(t);
-		
+		printer.println(text);
 	}
 
 }
