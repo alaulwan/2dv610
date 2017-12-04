@@ -70,6 +70,9 @@ public class QuadraticEquatioCalculator {
 
 	public void setEquation(Equation equation) {
 		this.equation = equation;
+		this.EDC.setA(equation.getA());
+		this.EDC.setB(equation.getB());
+		this.EDC.setC(equation.getC());
 	}
 	
 }
