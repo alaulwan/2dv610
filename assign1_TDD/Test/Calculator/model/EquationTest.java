@@ -29,7 +29,7 @@ public class EquationTest {
 		}
 
 	}
-	
+
 	@Test
 	public void setABC_RandomABC_SetABC() {
 		sut = new Equation(1.3, 2.05, -3);

@@ -22,9 +22,9 @@ public class Equation {
 	}
 
 	public void setABC(double a, double b, double c) {
-		this.a=a;
-		this.b=b;
-		this.c=c;
+		this.a = a;
+		this.b = b;
+		this.c = c;
 	}
 
 }
