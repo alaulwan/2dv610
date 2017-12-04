@@ -55,4 +55,28 @@ public class EnglishViewTest {
 		}
 	}
 
+	@Test
+	public void askToNumberOrOperation_Input0_1_2_3_4_PrintRightForm() {
+		for (int i = 0; i < 100; i++) {
+			sut.askToNumberOrOperation(i);
+			switch (i) {
+			case 1:
+				verify(mockPrinter, times(1)).println("Enter the first number A:");
+				break;
+			case 2:
+				verify(mockPrinter, times(1)).println("Enter the second number B:");
+				break;
+			case 3:
+				verify(mockPrinter, times(1)).println("Enter the third number C:");
+				break;
+			case 0:
+				verify(mockPrinter, times(1)).println("Enter the operation (+,-,*,/,%) or c to cancel: ");
+				break;
+			default:
+				verify(mockPrinter, times(i-3)).println("Enter the operation s:Square Root, p: power, c:cancel");
+			}
+		}
+		
+		
+	}
 }
