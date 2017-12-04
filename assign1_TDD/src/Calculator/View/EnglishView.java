@@ -27,7 +27,7 @@ public class EnglishView {
 	public void standardResultPrint(double result) {
 		printer.println("result: " + result);
 	}
-	
+
 	public void askToNumberOrOperation(int i) {
 		switch (i) {
 		case 1:

@@ -13,13 +13,9 @@ import Calculator.model.QuadraticEquatioCalculatorTest;
 import Calculator.model.StandardCalculatorTest;
 
 @RunWith(Suite.class)
-@SuiteClasses({ StandardCalculatorTest.class,
-				AdvancedCalculatorTest.class,
-				EquationTest.class,
-				EquationDiscriminantCalculatorTest.class,
-				FirstDegreeEquationCalculatorTest.class,
-				QuadraticEquatioCalculatorTest.class,
-				EnglishViewTest.class})
+@SuiteClasses({ StandardCalculatorTest.class, AdvancedCalculatorTest.class, EquationTest.class,
+		EquationDiscriminantCalculatorTest.class, FirstDegreeEquationCalculatorTest.class,
+		QuadraticEquatioCalculatorTest.class, EnglishViewTest.class })
 public class ProgramTest {
 
 }

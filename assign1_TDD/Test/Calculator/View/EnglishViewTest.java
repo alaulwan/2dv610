@@ -74,10 +74,9 @@ public class EnglishViewTest {
 				verify(mockPrinter, times(1)).println("Enter the operation (+,-,*,/,%) or c to cancel: ");
 				break;
 			default:
-				verify(mockPrinter, times(i-3)).println("Enter the operation s:Square Root, p: power, c:cancel");
+				verify(mockPrinter, times(i - 3)).println("Enter the operation s:Square Root, p: power, c:cancel");
 			}
 		}
-		
-		
+
 	}
 }
