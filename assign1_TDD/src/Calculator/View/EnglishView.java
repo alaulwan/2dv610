@@ -17,9 +17,11 @@ public class EnglishView {
 	}
 	
 	public void standardInstructionDisplay() {
-		
+		printer.println("Welcome to the standard calculator for (+,-,*,/,%) operations.");
 	}
 	
 	public void advancedInstructionDisplay() {
+		printer.println("Welcome to the advanced calculator for (square root, power) operations.");
+		
 	}
 }
