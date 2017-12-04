@@ -15,13 +15,13 @@ public class EnglishView {
 				+ "f: First Degree Equation Calculator a.x + b = 0\n"
 				+ "q: Quadratic Equatio Calculator a.x^2 + b.x + c = 0\n" + "e: exit");
 	}
-	
+
 	public void standardInstructionDisplay() {
 		printer.println("Welcome to the standard calculator for (+,-,*,/,%) operations.");
 	}
-	
+
 	public void advancedInstructionDisplay() {
 		printer.println("Welcome to the advanced calculator for (square root, power) operations.");
-		
+
 	}
 }
