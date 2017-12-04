@@ -1,11 +1,12 @@
 package Calculator.View;
 
+import java.io.InputStream;
 import java.io.PrintStream;
 
 public class EnglishView {
 	private PrintStream printer;
 
-	public EnglishView(PrintStream p) {
+	public EnglishView(PrintStream p, InputStream in) {
 		this.printer = p;
 	}
 
@@ -51,5 +52,12 @@ public class EnglishView {
 	public void printText(String text) {
 		printer.println(text);
 	}
+	
+	public String getInput() {
+		return null;
+		
+	}
+	
+	
 
 }

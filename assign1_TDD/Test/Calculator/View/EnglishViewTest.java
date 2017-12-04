@@ -4,21 +4,27 @@ import static org.junit.Assert.*;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.io.PrintStream;
 import java.util.Random;
+import java.util.Scanner;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.Mockito;
 
 public class EnglishViewTest {
 	private EnglishView sut;
 	PrintStream mockPrinter = mock(PrintStream.class);
+	InputStream mockIn = mock (InputStream.class);
 
 	@Before
 	public void setUp() throws Exception {
-		sut = new EnglishView(mockPrinter);
+		sut = new EnglishView(mockPrinter, mockIn);
 	}
 
 	@After
@@ -91,5 +97,14 @@ public class EnglishViewTest {
 		sut.printText("\n");
 		verify(mockPrinter, times(1)).println("\n");
 
+	}
+	
+	@Test
+	public void getInput_Return_sa() throws IOException  {
+		when(mockIn.read()).thenReturn((int) 's').thenReturn((int) 'a');
+		when(mockIn.available()).thenReturn(3);
+		assertEquals(sut.getInput(),"sa");
+		verify(mockIn, times(2)).read();
+		verify(mockIn, times(3)).available();
 	}
 }
