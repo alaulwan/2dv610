@@ -11,14 +11,13 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-
 public class EnglishViewTest {
 	private EnglishView sut;
 	PrintStream mockPrinter = mock(PrintStream.class);
 
 	@Before
 	public void setUp() throws Exception {
-		sut= new EnglishView(mockPrinter);
+		sut = new EnglishView(mockPrinter);
 	}
 
 	@After
@@ -28,15 +27,10 @@ public class EnglishViewTest {
 	@Test
 	public void instructionPrint_Void_PrintInstruction() {
 		sut.instructionPrint();
-		verify(mockPrinter, times(1))
-		.println("Welcome to calculator");
-		verify(mockPrinter, times(1))
-		.println("Enter:\n"
-				+ "s: standard calculator\n"
-				+ "d: advanced calculator\n"
+		verify(mockPrinter, times(1)).println("Welcome to calculator");
+		verify(mockPrinter, times(1)).println("Enter:\n" + "s: standard calculator\n" + "d: advanced calculator\n"
 				+ "f: First Degree Equation Calculator a.x + b = 0\n"
-				+ "q: Quadratic Equatio Calculator a.x^2 + b.x + c = 0\n"
-				+ "e: exit");
+				+ "q: Quadratic Equatio Calculator a.x^2 + b.x + c = 0\n" + "e: exit");
 	}
 
 }

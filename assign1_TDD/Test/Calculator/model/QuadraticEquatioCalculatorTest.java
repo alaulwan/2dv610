@@ -13,7 +13,7 @@ import org.mockito.Spy;
 import Calculator.model.exeption.NonQuadraticEquatioException;
 
 public class QuadraticEquatioCalculatorTest {
-	private QuadraticEquatioCalculator sut;
+	private QuadraticEquationCalculator sut;
 	private Equation mockEquation = mock(Equation.class);
 	private StandardCalculator mockSC = mock(StandardCalculator.class);
 	private AdvancedCalculator mockAC = mock(AdvancedCalculator.class);
@@ -31,7 +31,7 @@ public class QuadraticEquatioCalculatorTest {
 	@Test
 	public void setEquation_RandomEquation_UpdateEquation() throws NonQuadraticEquatioException {
 		EquationDiscriminantCalculator spyEDC = Mockito.spy(new EquationDiscriminantCalculator(mockEquation));
-		sut = new QuadraticEquatioCalculator(mockEquation, mockSC, mockAC, spyEDC);
+		sut = new QuadraticEquationCalculator(mockEquation, mockSC, mockAC, spyEDC);
 		when(mockEquation.getA()).thenReturn(1.00);
 		when(mockEquation.getB()).thenReturn(4.00);
 		when(mockEquation.getC()).thenReturn(3.00);
@@ -44,7 +44,7 @@ public class QuadraticEquatioCalculatorTest {
 
 	@Test
 	public void startSolving_RandomEquation_GetSolutions() throws NonQuadraticEquatioException {
-		sut = new QuadraticEquatioCalculator(mockEquation, mockSC, mockAC, mockEDG);
+		sut = new QuadraticEquationCalculator(mockEquation, mockSC, mockAC, mockEDG);
 		when(mockEquation.getA()).thenReturn(1.00);
 		when(mockEquation.getB()).thenReturn(4.00);
 		when(mockEquation.getC()).thenReturn(3.00);

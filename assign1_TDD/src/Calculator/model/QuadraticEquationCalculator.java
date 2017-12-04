@@ -2,7 +2,7 @@ package Calculator.model;
 
 import Calculator.model.exeption.NonQuadraticEquatioException;
 
-public class QuadraticEquatioCalculator {
+public class QuadraticEquationCalculator {
 	private Equation equation;
 	StandardCalculator SC;
 	AdvancedCalculator AC;
@@ -12,7 +12,7 @@ public class QuadraticEquatioCalculator {
 
 	private int numberOfSolutions;
 
-	public QuadraticEquatioCalculator(Equation equation, StandardCalculator SC, AdvancedCalculator AC,
+	public QuadraticEquationCalculator(Equation equation, StandardCalculator SC, AdvancedCalculator AC,
 			EquationDiscriminantCalculator EDC) {
 		this.SC = SC;
 		this.AC = AC;
