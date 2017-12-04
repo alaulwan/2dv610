@@ -6,6 +6,7 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
 import java.io.PrintStream;
+import java.util.Random;
 
 import org.junit.After;
 import org.junit.Before;
@@ -56,7 +57,7 @@ public class EnglishViewTest {
 	}
 
 	@Test
-	public void askToNumberOrOperation_Input0_1_2_3_4_PrintRightForm() {
+	public void askToNumberOrOperation_IntegersFrom0To100_PrintRightForm() {
 		for (int i = 0; i < 100; i++) {
 			sut.askToNumberOrOperation(i);
 			switch (i) {

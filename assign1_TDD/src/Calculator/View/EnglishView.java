@@ -29,7 +29,22 @@ public class EnglishView {
 	}
 	
 	public void askToNumberOrOperation(int i) {
-		
+		switch (i) {
+		case 1:
+			printer.println("Enter the first number A:");
+			break;
+		case 2:
+			printer.println("Enter the second number B:");
+			break;
+		case 3:
+			printer.println("Enter the third number C:");
+			break;
+		case 0:
+			printer.println("Enter the operation (+,-,*,/,%) or c to cancel: ");
+			break;
+		default:
+			printer.println("Enter the operation s:Square Root, p: power, c:cancel");
+		}
 
 	}
 
