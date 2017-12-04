@@ -45,14 +45,13 @@ public class EnglishViewTest {
 		verify(mockPrinter, times(1))
 				.println("Welcome to the advanced calculator for (square root, power) operations.");
 	}
-	
+
 	@Test
 	public void standardResultPrint_RandomDouble_PrintRightForm() {
-		for (int i=1; i<100; i++) {
-			double result=3.0177;
+		for (int i = 1; i < 100; i++) {
+			double result = 3.0177;
 			sut.standardResultPrint(result);
-			verify(mockPrinter, times(i))
-					.println("result: "+ result);
+			verify(mockPrinter, times(i)).println("result: " + result);
 		}
 	}
 
