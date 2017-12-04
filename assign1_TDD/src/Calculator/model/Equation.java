@@ -21,9 +21,10 @@ public class Equation {
 		return c;
 	}
 
-	public void setABC(double d, double e, double f) {
-		// TODO Auto-generated method stub
-		
+	public void setABC(double a, double b, double c) {
+		this.a=a;
+		this.b=b;
+		this.c=c;
 	}
 
 }
