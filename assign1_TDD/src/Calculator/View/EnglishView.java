@@ -25,6 +25,6 @@ public class EnglishView {
 	}
 	
 	public void standardResultPrint(double result) {
-		
+		printer.println("result: "+ result);
 	}
 }
