@@ -26,4 +26,12 @@ public class FirstDegreeEquationCalculator {
 		return Solution;
 	}
 
+	public void setB(double b) {
+		this.b = b;
+	}
+
+	public void setC(double c) {
+		this.c = c;
+	}
+
 }

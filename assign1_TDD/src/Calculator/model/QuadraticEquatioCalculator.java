@@ -67,5 +67,9 @@ public class QuadraticEquatioCalculator {
 	public double getDiscriminant() {
 		return Discriminant;
 	}
+
+	public void setEquation(Equation equation) {
+		this.equation = equation;
+	}
 	
 }

@@ -20,4 +20,16 @@ public class EquationDiscriminantCalculator {
 		double A_mul_C = SC.mul(a, c);
 		return AC.power(b, 2) - SC.mul(4, A_mul_C);
 	}
+
+	public void setA(double a) {
+		this.a = a;
+	}
+
+	public void setB(double b) {
+		this.b = b;
+	}
+
+	public void setC(double c) {
+		this.c = c;
+	}
 }
