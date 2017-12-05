@@ -57,7 +57,20 @@ public class EnglishView {
 	}
 	
 	public double getUserInputNumber() {
-		return 0;
+		String text = "";
+		while (text.replaceAll("\\s+", "").isEmpty()) {
+			text = getInput();
+		}
+		try {
+			double d = Double.parseDouble(text);
+			return d;
+		} catch (NumberFormatException e) {
+			if (text.charAt(0) == 'c')
+				return Double.MAX_VALUE;
+			printer.println("invalid number please try again, 'c' for cancel");
+			return Double.MIN_VALUE;
+		}
+
 	}
 
 	public char getUserInputChar() {
