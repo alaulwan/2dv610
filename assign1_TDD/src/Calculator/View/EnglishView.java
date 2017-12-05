@@ -65,7 +65,8 @@ public class EnglishView {
 	}
 	
 	public void waitToEnter() {
-
+		printer.println("Press Enter to continue...");
+		getInput();
 	}
 
 	public String getInput() {
