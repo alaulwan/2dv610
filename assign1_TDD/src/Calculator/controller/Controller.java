@@ -1,5 +1,7 @@
 package Calculator.controller;
 
+import java.util.List;
+
 import Calculator.View.EnglishView;
 
 public class Controller {
@@ -16,6 +18,11 @@ public class Controller {
 			number = view.getUserInputNumber();
 		}
 		return number;
+	}
+	
+	public char getOperationFromUser(List<Character> list, boolean isAdvanced) {
+		return 0;
+		
 	}
 
 }
