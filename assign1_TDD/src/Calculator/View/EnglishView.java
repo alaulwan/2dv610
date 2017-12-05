@@ -55,6 +55,10 @@ public class EnglishView {
 	public void printText(String text) {
 		printer.println(text);
 	}
+	
+	public double getUserInputNumber() {
+		return 0;
+	}
 
 	public char getUserInputChar() {
 		String text = "";
