@@ -33,9 +33,9 @@ public class ControllerTest {
 		assertTrue(printTip(expected, actual), doublecomparision(expected, actual));
 		verify(mockView, times(1)).askToNumberOrOperation(1);
 		verify(mockView, times(1)).getUserInputNumber();
-	
+
 	}
-	
+
 	private boolean doublecomparision(double expected, double actual) {
 		double c = expected - actual;
 		if (c < 0)
