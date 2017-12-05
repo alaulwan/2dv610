@@ -1,7 +1,6 @@
 package Calculator.View;
 
 import static org.junit.Assert.*;
-import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
@@ -21,7 +20,7 @@ public class EnglishViewTest {
 	private EnglishView sut;
 	private EnglishView spySut;
 	PrintStream mockPrinter = mock(PrintStream.class);
-	InputStream mockIn = mock (InputStream.class);
+	InputStream mockIn = mock(InputStream.class);
 
 	@Before
 	public void setUp() throws Exception {
@@ -100,20 +99,20 @@ public class EnglishViewTest {
 		verify(mockPrinter, times(1)).println("\n");
 
 	}
-	
+
 	@Test
-	public void getInput_Return_sa() throws IOException  {
+	public void getInput_Return_sa() throws IOException {
 		when(mockIn.read()).thenReturn((int) 's').thenReturn((int) 'a');
 		when(mockIn.available()).thenReturn(3);
-		assertEquals(sut.getInput(),"sa");
+		assertEquals(sut.getInput(), "sa");
 		verify(mockIn, times(2)).read();
 		verify(mockIn, times(3)).available();
 	}
-	
+
 	@Test
-	public void getUserInputChar_RandomString_ReturnFirstChar() throws IOException  {
+	public void getUserInputChar_RandomString_ReturnFirstChar() throws IOException {
 		doReturn("asd").when(spySut).getInput();
-		assertEquals(spySut.getUserInputChar(),'a');
+		assertEquals(spySut.getUserInputChar(), 'a');
 		verify(spySut, times(1)).getUserInputChar();
 	}
 }
