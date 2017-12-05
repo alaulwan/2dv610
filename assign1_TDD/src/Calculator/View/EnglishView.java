@@ -56,6 +56,11 @@ public class EnglishView {
 		printer.println(text);
 	}
 
+	public char getUserInputChar() {
+		return 0;
+		
+	}
+	
 	public String getInput() {
 		StringBuilder sb = new StringBuilder();
 		try {

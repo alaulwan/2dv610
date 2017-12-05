@@ -1,6 +1,8 @@
 package Calculator.View;
 
 import static org.junit.Assert.*;
+import static org.mockito.Matchers.any;
+import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
@@ -13,15 +15,18 @@ import java.io.PrintStream;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.Mockito;
 
 public class EnglishViewTest {
 	private EnglishView sut;
+	private EnglishView spySut;
 	PrintStream mockPrinter = mock(PrintStream.class);
 	InputStream mockIn = mock (InputStream.class);
 
 	@Before
 	public void setUp() throws Exception {
 		sut = new EnglishView(mockPrinter, mockIn);
+		spySut = Mockito.spy(sut);
 	}
 
 	@After
@@ -103,5 +108,12 @@ public class EnglishViewTest {
 		assertEquals(sut.getInput(),"sa");
 		verify(mockIn, times(2)).read();
 		verify(mockIn, times(3)).available();
+	}
+	
+	@Test
+	public void getUserInputChar_RandomString_ReturnFirstChar() throws IOException  {
+		doReturn("asd").when(spySut).getInput();
+		assertEquals(spySut.getUserInputChar(),'a');
+		verify(spySut, times(1)).getUserInputChar();
 	}
 }
