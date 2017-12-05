@@ -57,8 +57,11 @@ public class EnglishView {
 	}
 
 	public char getUserInputChar() {
-		return 0;
-		
+		String text = "";
+		while (text.replaceAll("\\s+", "").isEmpty()) {
+			text = getInput();
+		}
+		return text.charAt(0);
 	}
 	
 	public String getInput() {
