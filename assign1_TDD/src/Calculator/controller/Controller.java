@@ -21,8 +21,15 @@ public class Controller {
 	}
 	
 	public char getOperationFromUser(List<Character> list, boolean isAdvanced) {
-		return 0;
-		
+		char operation = '0';
+		while (!list.contains(operation)) {
+			if (isAdvanced)
+				view.askToNumberOrOperation(-1);
+			else
+				view.askToNumberOrOperation(0);
+			operation = view.getUserInputChar();
+		}
+		return operation;
 	}
 
 }
