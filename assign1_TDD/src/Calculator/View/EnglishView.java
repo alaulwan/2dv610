@@ -55,7 +55,7 @@ public class EnglishView {
 	public void printText(String text) {
 		printer.println(text);
 	}
-	
+
 	public double getUserInputNumber() {
 		String text = "";
 		while (text.replaceAll("\\s+", "").isEmpty()) {

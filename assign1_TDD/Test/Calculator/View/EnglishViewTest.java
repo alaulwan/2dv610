@@ -123,27 +123,26 @@ public class EnglishViewTest {
 		verify(mockPrinter, times(1)).println("Press Enter to continue...");
 		verify(spySut, times(1)).getInput();
 	}
-	
+
 	@Test
 	public void getUserInputNumber_ThreeInputs_ReturnDoubleOrMaxValueIfCancelOrMinValueIfError() throws IOException {
 		doReturn("3.05").when(spySut).getInput();
 		double actual = spySut.getUserInputNumber();
 		double expected = 3.05;
 		assertTrue(printTip(expected, actual), doublecomparision(expected, actual));
-		
-		
+
 		doReturn("cddf").when(spySut).getInput();
 		actual = spySut.getUserInputNumber();
 		expected = Double.MAX_VALUE;
 		assertTrue(printTip(expected, actual), doublecomparision(expected, actual));
-		
+
 		doReturn("jhj").when(spySut).getInput();
 		spySut.getUserInputNumber();
 		actual = spySut.getUserInputNumber();
 		expected = Double.MIN_VALUE;
 		assertTrue(printTip(expected, actual), doublecomparision(expected, actual));
 	}
-	
+
 	private boolean doublecomparision(double expected, double actual) {
 		double c = expected - actual;
 		if (c < 0)
