@@ -16,8 +16,7 @@ import Calculator.model.StandardCalculatorTest;
 @RunWith(Suite.class)
 @SuiteClasses({ StandardCalculatorTest.class, AdvancedCalculatorTest.class, EquationTest.class,
 		EquationDiscriminantCalculatorTest.class, FirstDegreeEquationCalculatorTest.class,
-		QuadraticEquatioCalculatorTest.class, EnglishViewTest.class,
-		ControllerTest.class})
+		QuadraticEquatioCalculatorTest.class, EnglishViewTest.class, ControllerTest.class })
 public class ProgramTest {
 
 }

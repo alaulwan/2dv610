@@ -37,29 +37,28 @@ public class ControllerTest {
 		verify(mockView, times(1)).getUserInputNumber();
 
 	}
-	
+
 	@Test
 	public void getOperationFromUser_ShouldOperation() {
 		{
-		when(mockView.getUserInputChar()).thenReturn('s').thenReturn('+');
-		char actual = sut.getOperationFromUser(Arrays.asList ('+','-','*','/','%','c'), false);
-		char expected = '+';
-		assertEquals(actual, expected);
-		verify(mockView, times(2)).askToNumberOrOperation(0);
-		verify(mockView, times(0)).askToNumberOrOperation(-1);
-		verify(mockView, times(2)).getUserInputChar();
+			when(mockView.getUserInputChar()).thenReturn('s').thenReturn('+');
+			char actual = sut.getOperationFromUser(Arrays.asList('+', '-', '*', '/', '%', 'c'), false);
+			char expected = '+';
+			assertEquals(actual, expected);
+			verify(mockView, times(2)).askToNumberOrOperation(0);
+			verify(mockView, times(0)).askToNumberOrOperation(-1);
+			verify(mockView, times(2)).getUserInputChar();
 		}
 		{
-		when(mockView.getUserInputChar()).thenReturn('k').thenReturn('s');
-		char actual = sut.getOperationFromUser(Arrays.asList ('s','p','c'), true);
-		char expected = 's';
-		assertEquals(actual, expected);
-		verify(mockView, times(2)).askToNumberOrOperation(0);
-		verify(mockView, times(2)).askToNumberOrOperation(-1);
-		verify(mockView, times(4)).getUserInputChar();
+			when(mockView.getUserInputChar()).thenReturn('k').thenReturn('s');
+			char actual = sut.getOperationFromUser(Arrays.asList('s', 'p', 'c'), true);
+			char expected = 's';
+			assertEquals(actual, expected);
+			verify(mockView, times(2)).askToNumberOrOperation(0);
+			verify(mockView, times(2)).askToNumberOrOperation(-1);
+			verify(mockView, times(4)).getUserInputChar();
 		}
 	}
-	
 
 	private boolean doublecomparision(double expected, double actual) {
 		double c = expected - actual;

@@ -19,7 +19,7 @@ public class Controller {
 		}
 		return number;
 	}
-	
+
 	public char getOperationFromUser(List<Character> list, boolean isAdvanced) {
 		char operation = '0';
 		while (!list.contains(operation)) {
