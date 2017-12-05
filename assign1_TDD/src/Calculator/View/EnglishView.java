@@ -63,6 +63,10 @@ public class EnglishView {
 		}
 		return text.charAt(0);
 	}
+	
+	public void waitToEnter() {
+
+	}
 
 	public String getInput() {
 		StringBuilder sb = new StringBuilder();
