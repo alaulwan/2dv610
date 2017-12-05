@@ -115,7 +115,7 @@ public class EnglishViewTest {
 		assertEquals(spySut.getUserInputChar(), 'a');
 		verify(spySut, times(1)).getUserInputChar();
 	}
-	
+
 	@Test
 	public void waitToEnter_ShouldDisplyMsgAndAskUserToEnter() throws IOException {
 		doReturn("asd\n").when(spySut).getInput();

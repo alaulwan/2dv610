@@ -63,7 +63,7 @@ public class EnglishView {
 		}
 		return text.charAt(0);
 	}
-	
+
 	public void waitToEnter() {
 		printer.println("Press Enter to continue...");
 		getInput();
