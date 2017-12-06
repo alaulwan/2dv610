@@ -137,7 +137,31 @@ public class Controller {
 	}
 	
 	public double QuadraticEquatioCalculator() {
-		return 0;
+		double number1 = Double.MIN_VALUE;
+		double number2 = Double.MIN_VALUE;
+		double number3 = Double.MIN_VALUE;
+
+		number1 = getNumberFromUser(1);
+		if (number1 == Double.MAX_VALUE)
+			return Double.MIN_VALUE;
+
+		number2 = getNumberFromUser(2);
+		if (number2 == Double.MAX_VALUE)
+			return Double.MIN_VALUE;
+
+		number3 = getNumberFromUser(3);
+		if (number3 == Double.MAX_VALUE)
+			return Double.MIN_VALUE;
+		equation.setABC(number1, number2, number3);
+		QEC.setEquation(equation);
+		try {
+			QEC.startSolving();
+		} catch (NonQuadraticEquatioException e) {
+			view.printText("Error*****Non Quadratic Equatio*****\n");
+			return Double.MIN_VALUE;
+		}
+		return 1;
+
 	}
 
 	public double getNumberFromUser(int i) {
