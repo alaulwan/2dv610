@@ -20,14 +20,14 @@ public class Controller {
 	private QuadraticEquationCalculator QEC;
 	private Equation equation;
 
-	public Controller(EnglishView view, StandardCalculator sc, AdvancedCalculator ac,
-			FirstDegreeEquationCalculator FDC, QuadraticEquationCalculator QEC, Equation equation) {
+	public Controller(EnglishView view, StandardCalculator sc, AdvancedCalculator ac, FirstDegreeEquationCalculator FDC,
+			QuadraticEquationCalculator QEC, Equation equation) {
 		this.view = view;
 		this.sc = sc;
 		this.AC = ac;
 		this.FDC = FDC;
 		this.QEC = QEC;
-		this.equation= equation;
+		this.equation = equation;
 	}
 
 	public double standardCalculator() {
@@ -135,7 +135,7 @@ public class Controller {
 		}
 		return result;
 	}
-	
+
 	public double QuadraticEquatioCalculator() {
 		double number1 = Double.MIN_VALUE;
 		double number2 = Double.MIN_VALUE;
