@@ -164,9 +164,11 @@ public class ControllerTest {
 		}
 
 	}
-	
+
+	@SuppressWarnings("unchecked")
 	@Test
-	public void FirstDegreeEquationCalculator_ShouldReturnResultOrCanceledByUser() throws NonFirstDegreeEquatioException {
+	public void FirstDegreeEquationCalculator_ShouldReturnResultOrCanceledByUser()
+			throws NonFirstDegreeEquatioException {
 		// case1: Return result
 		doReturn(2.50).when(spySut).getNumberFromUser(1);
 		doReturn(-5.00).when(spySut).getNumberFromUser(2);
@@ -176,26 +178,26 @@ public class ControllerTest {
 		assertTrue(printTip(expected, actual), doublecomparision(expected, actual));
 		verify(mockView, times(1)).askToNumberOrOperation(1);
 		verify(mockView, times(1)).askToNumberOrOperation(2);
-		
+
 		// case2: Return exception
-				doReturn(0.00).when(spySut).getNumberFromUser(1);
-				doReturn(-5.00).when(spySut).getNumberFromUser(2);
-				when(mockFdc.getSolution()).thenThrow(NonFirstDegreeEquatioException.class);
-				actual = sut.FirstDegreeEquationCalculator();
-				expected = Double.MIN_VALUE;
-				assertTrue(printTip(expected, actual), doublecomparision(expected, actual));
-				verify(mockView, times(2)).askToNumberOrOperation(1);
-				verify(mockView, times(2)).askToNumberOrOperation(2);
-				verify(mockView, times(1)).printText("Error*****Non First Degree Equatio*****\n");
-				
+		doReturn(0.00).when(spySut).getNumberFromUser(1);
+		doReturn(-5.00).when(spySut).getNumberFromUser(2);
+		when(mockFdc.getSolution()).thenThrow(NonFirstDegreeEquatioException.class);
+		actual = sut.FirstDegreeEquationCalculator();
+		expected = Double.MIN_VALUE;
+		assertTrue(printTip(expected, actual), doublecomparision(expected, actual));
+		verify(mockView, times(2)).askToNumberOrOperation(1);
+		verify(mockView, times(2)).askToNumberOrOperation(2);
+		verify(mockView, times(1)).printText("Error*****Non First Degree Equatio*****\n");
+
 		// Case 3: the user inputs 'c' to cancel
-				doReturn(Double.MAX_VALUE).doReturn(5.00).doReturn(5.1).when(spySut).getNumberFromUser(1);
-				doReturn(Double.MAX_VALUE).when(spySut).getNumberFromUser(2);
-				for (int i = 0; i < 2; i++) {
-					actual = spySut.FirstDegreeEquationCalculator();
-					expected = Double.MIN_VALUE;
-					assertTrue(printTip(expected, actual), doublecomparision(expected, actual));
-				}
+		doReturn(Double.MAX_VALUE).doReturn(5.00).doReturn(5.1).when(spySut).getNumberFromUser(1);
+		doReturn(Double.MAX_VALUE).when(spySut).getNumberFromUser(2);
+		for (int i = 0; i < 2; i++) {
+			actual = spySut.FirstDegreeEquationCalculator();
+			expected = Double.MIN_VALUE;
+			assertTrue(printTip(expected, actual), doublecomparision(expected, actual));
+		}
 	}
 
 	private boolean doublecomparision(double expected, double actual) {

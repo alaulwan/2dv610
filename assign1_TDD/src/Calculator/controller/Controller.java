@@ -15,11 +15,12 @@ public class Controller {
 	private AdvancedCalculator AC;
 	private FirstDegreeEquationCalculator FDC;
 
-	public Controller(EnglishView view, StandardCalculator sc, AdvancedCalculator ac, FirstDegreeEquationCalculator FDC) {
+	public Controller(EnglishView view, StandardCalculator sc, AdvancedCalculator ac,
+			FirstDegreeEquationCalculator FDC) {
 		this.view = view;
 		this.sc = sc;
 		this.AC = ac;
-		this.FDC=FDC;
+		this.FDC = FDC;
 	}
 
 	public double standardCalculator() {
@@ -103,7 +104,7 @@ public class Controller {
 
 		return result;
 	}
-	
+
 	public double FirstDegreeEquationCalculator() {
 		double result = Double.MIN_VALUE;
 		double number1 = Double.MIN_VALUE;
