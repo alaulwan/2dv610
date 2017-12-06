@@ -5,22 +5,29 @@ import java.util.List;
 
 import Calculator.View.EnglishView;
 import Calculator.model.AdvancedCalculator;
+import Calculator.model.Equation;
 import Calculator.model.FirstDegreeEquationCalculator;
+import Calculator.model.QuadraticEquationCalculator;
 import Calculator.model.StandardCalculator;
 import Calculator.model.exeption.NonFirstDegreeEquatioException;
+import Calculator.model.exeption.NonQuadraticEquatioException;
 
 public class Controller {
 	private EnglishView view;
 	private StandardCalculator sc;
 	private AdvancedCalculator AC;
 	private FirstDegreeEquationCalculator FDC;
+	private QuadraticEquationCalculator QEC;
+	private Equation equation;
 
 	public Controller(EnglishView view, StandardCalculator sc, AdvancedCalculator ac,
-			FirstDegreeEquationCalculator FDC) {
+			FirstDegreeEquationCalculator FDC, QuadraticEquationCalculator QEC, Equation equation) {
 		this.view = view;
 		this.sc = sc;
 		this.AC = ac;
 		this.FDC = FDC;
+		this.QEC = QEC;
+		this.equation= equation;
 	}
 
 	public double standardCalculator() {
@@ -127,6 +134,10 @@ public class Controller {
 			return Double.MIN_VALUE;
 		}
 		return result;
+	}
+	
+	public double QuadraticEquatioCalculator() {
+		return 0;
 	}
 
 	public double getNumberFromUser(int i) {

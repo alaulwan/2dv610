@@ -16,9 +16,12 @@ import org.mockito.Mockito;
 
 import Calculator.View.EnglishView;
 import Calculator.model.AdvancedCalculator;
+import Calculator.model.Equation;
 import Calculator.model.FirstDegreeEquationCalculator;
+import Calculator.model.QuadraticEquationCalculator;
 import Calculator.model.StandardCalculator;
 import Calculator.model.exeption.NonFirstDegreeEquatioException;
+import Calculator.model.exeption.NonQuadraticEquatioException;
 
 public class ControllerTest {
 	private Controller sut;
@@ -26,11 +29,13 @@ public class ControllerTest {
 	StandardCalculator mockSc = mock(StandardCalculator.class);
 	AdvancedCalculator mockAc = mock(AdvancedCalculator.class);
 	FirstDegreeEquationCalculator mockFdc = mock(FirstDegreeEquationCalculator.class);
+	QuadraticEquationCalculator mockQec = mock(QuadraticEquationCalculator.class);
+	Equation mockEquation = mock(Equation.class);
 	Controller spySut;
 
 	@Before
 	public void setUp() throws Exception {
-		sut = new Controller(mockView, mockSc, mockAc, mockFdc);
+		sut = new Controller(mockView, mockSc, mockAc, mockFdc, mockQec, mockEquation);
 		spySut = Mockito.spy(sut);
 	}
 
@@ -173,21 +178,17 @@ public class ControllerTest {
 		doReturn(2.50).when(spySut).getNumberFromUser(1);
 		doReturn(-5.00).when(spySut).getNumberFromUser(2);
 		when(mockFdc.getSolution()).thenReturn(2.00);
-		double actual = sut.FirstDegreeEquationCalculator();
+		double actual = spySut.FirstDegreeEquationCalculator();
 		double expected = 2.00;
 		assertTrue(printTip(expected, actual), doublecomparision(expected, actual));
-		verify(mockView, times(1)).askToNumberOrOperation(1);
-		verify(mockView, times(1)).askToNumberOrOperation(2);
 
-		// case2: Return exception
+		// case2: Return error MSG
 		doReturn(0.00).when(spySut).getNumberFromUser(1);
 		doReturn(-5.00).when(spySut).getNumberFromUser(2);
 		when(mockFdc.getSolution()).thenThrow(NonFirstDegreeEquatioException.class);
-		actual = sut.FirstDegreeEquationCalculator();
+		actual = spySut.FirstDegreeEquationCalculator();
 		expected = Double.MIN_VALUE;
 		assertTrue(printTip(expected, actual), doublecomparision(expected, actual));
-		verify(mockView, times(2)).askToNumberOrOperation(1);
-		verify(mockView, times(2)).askToNumberOrOperation(2);
 		verify(mockView, times(1)).printText("Error*****Non First Degree Equatio*****\n");
 
 		// Case 3: the user inputs 'c' to cancel
@@ -198,6 +199,40 @@ public class ControllerTest {
 			expected = Double.MIN_VALUE;
 			assertTrue(printTip(expected, actual), doublecomparision(expected, actual));
 		}
+	}
+	
+	@Test
+	public void QuadraticEquatioCalculator_ShouldReturnResultOrCanceledByUser()
+			throws NonQuadraticEquatioException {
+		// case1: Return result
+		doReturn(1.00).when(spySut).getNumberFromUser(1);
+		doReturn(4.00).when(spySut).getNumberFromUser(2);
+		doReturn(3.00).when(spySut).getNumberFromUser(2);
+
+		double actual = spySut.QuadraticEquatioCalculator();
+		double expected = 1;
+		assertTrue(printTip(expected, actual), doublecomparision(expected, actual));
+		
+		// case2: Return error MSG
+		doReturn(0.00).when(spySut).getNumberFromUser(1);
+		doReturn(4.00).when(spySut).getNumberFromUser(2);
+		doReturn(-5.00).when(spySut).getNumberFromUser(3);
+		Mockito.doThrow(NonQuadraticEquatioException.class).when(mockQec).startSolving();
+		actual = spySut.QuadraticEquatioCalculator();
+		expected = Double.MIN_VALUE;
+		assertTrue(printTip(expected, actual), doublecomparision(expected, actual));
+		verify(mockView, times(1)).printText("Error*****Non Quadratic Equatio*****\n");
+				
+		// Case 3: the user inputs 'c' to cancel
+		doReturn(Double.MAX_VALUE).doReturn(5.00).doReturn(3.00).when(spySut).getNumberFromUser(1);
+		doReturn(Double.MAX_VALUE).doReturn(5.00).when(spySut).getNumberFromUser(2);
+		doReturn(Double.MAX_VALUE).when(spySut).getNumberFromUser(3);
+		for (int i = 0; i < 3; i++) {
+			actual = spySut.QuadraticEquatioCalculator();
+			expected = Double.MIN_VALUE;
+			assertTrue(printTip(expected, actual), doublecomparision(expected, actual));
+		}
+		
 	}
 
 	private boolean doublecomparision(double expected, double actual) {
