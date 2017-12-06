@@ -21,7 +21,7 @@ public class ControllerTest {
 	private Controller sut;
 	EnglishView mockView = mock(EnglishView.class);
 	StandardCalculator mockSc = mock(StandardCalculator.class);
-	Controller spySut ;
+	Controller spySut;
 
 	@Before
 	public void setUp() throws Exception {
@@ -65,44 +65,44 @@ public class ControllerTest {
 			verify(mockView, times(4)).getUserInputChar();
 		}
 	}
-	
+
 	@Test
 	public void standardCalculator_GetTwoNumberAndOperationThenCalculateTheResult() {
 		doReturn(5.00).when(spySut).getNumberFromUser(1);
 		doReturn(4.00).when(spySut).getNumberFromUser(2);
-		//Case operations: +, -, *, /, %, c, or others
-		doReturn('+').doReturn('-').doReturn('*').
-		doReturn('/').doReturn('%').doReturn('c').
-		doReturn('k').when(spySut).getOperationFromUser(Arrays.asList('+', '-', '*', '/', '%', 'c'), false);
-		
+		// Case operations: +, -, *, /, %, c, or others
+		doReturn('+').doReturn('-').doReturn('*').doReturn('/').doReturn('%').doReturn('c').doReturn('k').when(spySut)
+				.getOperationFromUser(Arrays.asList('+', '-', '*', '/', '%', 'c'), false);
+
 		when(mockSc.sum(5.00, 4.00)).thenReturn(5.00 + 4.00);
 		when(mockSc.subtract(5.00, 4.00)).thenReturn(5.00 - 4.00);
 		when(mockSc.mul(5.00, 4.00)).thenReturn(5.00 * 4.00);
 		when(mockSc.divide(5.00, 4.00)).thenReturn(5.00 / 4.00);
 		when(mockSc.mod(5.00, 4.00)).thenReturn(5.00 % 4.00);
-		double [] expectedArray = {9.00, 1.00, 20.00, 1.25, 1, Double.MIN_VALUE, Double.MIN_VALUE };
-		for(int i=0; i<7 ; i++) {
+		double[] expectedArray = { 9.00, 1.00, 20.00, 1.25, 1, Double.MIN_VALUE, Double.MIN_VALUE };
+		for (int i = 0; i < 7; i++) {
 			double actual = spySut.standardCalculator();
 			double expected = expectedArray[i];
 			assertTrue(printTip(expected, actual), doublecomparision(expected, actual));
-			verify(mockView, times(i+1)).standardInstructionDisplay();
+			verify(mockView, times(i + 1)).standardInstructionDisplay();
 		}
-		
-		//Case divider is zero
+
+		// Case divider is zero
 		doReturn(0.00).when(spySut).getNumberFromUser(2);
-		doReturn('/').doReturn('%').when(spySut).getOperationFromUser(Arrays.asList('+', '-', '*', '/', '%', 'c'), false);
-		when(mockSc.divide(5.00, 0.00)).thenThrow(new IllegalArgumentException("Number2 'divisor' is 0"));	
+		doReturn('/').doReturn('%').when(spySut).getOperationFromUser(Arrays.asList('+', '-', '*', '/', '%', 'c'),
+				false);
+		when(mockSc.divide(5.00, 0.00)).thenThrow(new IllegalArgumentException("Number2 'divisor' is 0"));
 		double actual = spySut.standardCalculator();
 		double expected = Double.MIN_VALUE;
 		assertTrue(printTip(expected, actual), doublecomparision(expected, actual));
-		verify(mockView, times(1)).printText("Error*****"+ "Number2 'divisor' is 0" +"*****\n");
+		verify(mockView, times(1)).printText("Error*****" + "Number2 'divisor' is 0" + "*****\n");
 		when(mockSc.mod(5.00, 0.00)).thenThrow(new IllegalArgumentException("Number2 'divisor' is 0"));
 		actual = spySut.standardCalculator();
 		expected = Double.MIN_VALUE;
 		assertTrue(printTip(expected, actual), doublecomparision(expected, actual));
-		verify(mockView, times(1)).printText("Error*****"+ "Number2 'divisor' is 0" +"*****\n");
-		
-		//Case user 'c' for number1 or number2 to cancel:
+		verify(mockView, times(1)).printText("Error*****" + "Number2 'divisor' is 0" + "*****\n");
+
+		// Case user 'c' for number1 or number2 to cancel:
 		doReturn('-').when(spySut).getOperationFromUser(Arrays.asList('+', '-', '*', '/', '%', 'c'), false);
 		doReturn(Double.MAX_VALUE).when(spySut).getNumberFromUser(1);
 		doReturn(4.00).when(spySut).getNumberFromUser(2);
@@ -110,7 +110,7 @@ public class ControllerTest {
 		actual = spySut.standardCalculator();
 		expected = Double.MIN_VALUE;
 		assertTrue(printTip(expected, actual), doublecomparision(expected, actual));
-		
+
 		doReturn(5.00).when(spySut).getNumberFromUser(1);
 		doReturn(Double.MAX_VALUE).when(spySut).getNumberFromUser(2);
 		when(mockSc.subtract(5.00, Double.MAX_VALUE)).thenReturn(5.00 - Double.MAX_VALUE);
