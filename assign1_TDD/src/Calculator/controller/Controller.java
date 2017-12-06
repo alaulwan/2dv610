@@ -31,7 +31,49 @@ public class Controller {
 	}
 	
 	public boolean start() {
-		return false;
+		view.instructionPrint();
+		char input = view.getUserInputChar();
+
+		if (input == 's') {
+			double result = standardCalculator();
+			if (result != Double.MIN_VALUE) {
+				view.standardResultPrint(result);
+				view.waitToEnter();
+			}
+
+		} else if (input == 'd') {
+			double result = advancedCalculator();
+			if (result != Double.MIN_VALUE) {
+				view.standardResultPrint(result);
+				view.waitToEnter();
+			}
+		} else if (input == 'f') {
+			double result = FirstDegreeEquationCalculator();
+			if (result != Double.MIN_VALUE) {
+				view.standardResultPrint(result);
+				view.waitToEnter();
+			}
+		} else if (input == 'q') {
+			double result = QuadraticEquatioCalculator();
+			if (result != Double.MIN_VALUE) {
+				double numberOfSolution = QEC.getNumberOfSolutions();
+				double result1 = QEC.getSolution1();
+				double result2 = QEC.getSolution2();
+				if (numberOfSolution == 2) {
+					view.standardResultPrint(result1);
+					view.standardResultPrint(result2);
+				} else if (numberOfSolution == 1) {
+					view.standardResultPrint(result1);
+				} else {
+					view.printText("*****No Solution*****");
+				}
+				view.waitToEnter();
+
+			}
+
+		}
+		return input != 'e';
+
 	}
 
 	public double standardCalculator() {
