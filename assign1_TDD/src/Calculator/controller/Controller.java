@@ -68,8 +68,36 @@ public class Controller {
 	}
 	
 	public double advancedCalculator() {
-		return 0;
-		
+		view.advancedInstructionDisplay();
+		double result = Double.MIN_VALUE;
+		double number1 = Double.MIN_VALUE;
+		double number2 = Double.MIN_VALUE;
+		char operation = Character.MIN_VALUE;
+
+		number1 = getNumberFromUser(1);
+		if (number1 == Double.MAX_VALUE)
+			return Double.MIN_VALUE;
+
+		operation = getOperationFromUser(Arrays.asList('s', 'p', 'c'), true);
+		if (operation == 'c')
+			return Double.MIN_VALUE;
+
+		if (operation == 's') {
+			try {
+				result = AC.squareRoot(number1);
+			} catch (IllegalArgumentException e) {
+				view.printText("Error*****" + e.getMessage() + "*****\n");
+				return Double.MIN_VALUE;
+			}
+
+		} else {
+			number2 = getNumberFromUser(2);
+			if (number2 == Double.MAX_VALUE)
+				return Double.MIN_VALUE;
+			result = AC.power(number1, number2);
+		}
+
+		return result;
 	}
 
 	public double getNumberFromUser(int i) {
