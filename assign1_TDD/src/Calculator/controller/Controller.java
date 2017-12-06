@@ -4,15 +4,18 @@ import java.util.Arrays;
 import java.util.List;
 
 import Calculator.View.EnglishView;
+import Calculator.model.AdvancedCalculator;
 import Calculator.model.StandardCalculator;
 
 public class Controller {
 	private EnglishView view;
 	private StandardCalculator sc;
+	private AdvancedCalculator AC;
 
-	public Controller(EnglishView view, StandardCalculator sc) {
+	public Controller(EnglishView view, StandardCalculator sc, AdvancedCalculator ac) {
 		this.view = view;
 		this.sc = sc;
+		this.AC = ac;
 	}
 
 	public double standardCalculator() {
@@ -62,6 +65,11 @@ public class Controller {
 			break;
 		}
 		return result;
+	}
+	
+	public double advancedCalculator() {
+		return 0;
+		
 	}
 
 	public double getNumberFromUser(int i) {

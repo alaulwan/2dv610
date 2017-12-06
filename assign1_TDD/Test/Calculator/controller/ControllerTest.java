@@ -15,17 +15,19 @@ import org.junit.Test;
 import org.mockito.Mockito;
 
 import Calculator.View.EnglishView;
+import Calculator.model.AdvancedCalculator;
 import Calculator.model.StandardCalculator;
 
 public class ControllerTest {
 	private Controller sut;
 	EnglishView mockView = mock(EnglishView.class);
 	StandardCalculator mockSc = mock(StandardCalculator.class);
+	AdvancedCalculator mockAc = mock(AdvancedCalculator.class);
 	Controller spySut;
 
 	@Before
 	public void setUp() throws Exception {
-		sut = new Controller(mockView, mockSc);
+		sut = new Controller(mockView, mockSc, mockAc);
 		spySut = Mockito.spy(sut);
 	}
 
@@ -117,6 +119,47 @@ public class ControllerTest {
 		actual = spySut.standardCalculator();
 		expected = Double.MIN_VALUE;
 		assertTrue(printTip(expected, actual), doublecomparision(expected, actual));
+	}
+	
+	@Test
+	public void advancedCalculator_GetTwoNumberAndOperationThenCalculateTheResult() {
+		// Case 1: the power operation
+		doReturn(10.5625).when(spySut).getNumberFromUser(1);
+		doReturn(2.00).when(spySut).getNumberFromUser(2);
+		doReturn('p').when(spySut).getOperationFromUser(Arrays.asList('s', 'p', 'c'), true);
+		when(mockAc.power(10.5625, 2.00)).thenReturn(Math.pow(10.5625, 2.00));
+		double actual = spySut.advancedCalculator();
+		double expected = 111.56640625;
+		assertTrue(printTip(expected, actual), doublecomparision(expected, actual));
+		verify(mockView, times(1)).advancedInstructionDisplay();
+		
+		// Case 2: the square root operation with positive number
+		doReturn('s').when(spySut).getOperationFromUser(Arrays.asList('s', 'p', 'c'), true);
+		when(mockAc.squareRoot(10.5625)).thenReturn(Math.sqrt(10.5625));
+		actual = spySut.advancedCalculator();
+		expected = 3.25;
+		assertTrue(printTip(expected, actual), doublecomparision(expected, actual));
+		verify(mockView, times(2)).advancedInstructionDisplay();
+		
+		// Case 3: the square root operation with negative number
+				doReturn(-5.1).when(spySut).getNumberFromUser(1);
+				doReturn('s').when(spySut).getOperationFromUser(Arrays.asList('s', 'p', 'c'), true);
+				when(mockAc.squareRoot(-5.1)).thenThrow(new IllegalArgumentException("Can not Square Root a negative number"));
+				actual = spySut.advancedCalculator();
+				expected = Double.MIN_VALUE;
+				assertTrue(printTip(expected, actual), doublecomparision(expected, actual));
+				verify(mockView, times(1)).printText("Error*****" + "Can not Square Root a negative number" + "*****\n");
+				
+				// Case 4: the user inputs 'c' to cancel
+				doReturn(Double.MAX_VALUE).doReturn(5.1).doReturn(5.1).when(spySut).getNumberFromUser(1);
+				doReturn('c').doReturn('p').when(spySut).getOperationFromUser(Arrays.asList('s', 'p', 'c'), true);
+				doReturn(Double.MAX_VALUE).when(spySut).getNumberFromUser(2);
+				for (int i=0 ; i<3 ; i++) {
+					actual = spySut.advancedCalculator();
+					expected = Double.MIN_VALUE;
+					assertTrue(printTip(expected, actual), doublecomparision(expected, actual));
+				}
+				
 	}
 
 	private boolean doublecomparision(double expected, double actual) {
