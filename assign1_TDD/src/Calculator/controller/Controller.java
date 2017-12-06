@@ -29,7 +29,7 @@ public class Controller {
 		this.QEC = QEC;
 		this.equation = equation;
 	}
-	
+
 	public boolean start() {
 		view.instructionPrint();
 		char input = view.getUserInputChar();

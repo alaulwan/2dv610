@@ -42,7 +42,7 @@ public class ControllerTest {
 	@After
 	public void tearDown() throws Exception {
 	}
-	
+
 	@Test
 	public void start_userChooseStandardC_ShouldInvokeStandardCThenViewTheResultAndReturnTrue() {
 		when(mockView.getUserInputChar()).thenReturn('s');
@@ -52,7 +52,7 @@ public class ControllerTest {
 		verify(mockView, times(1)).standardResultPrint(5.00);
 		verify(mockView, times(1)).waitToEnter();
 	}
-	
+
 	@Test
 	public void start_userChooseAdvancedC_ShouldInvokeAdvancedCThenViewTheResultAndReturnTrue() {
 		when(mockView.getUserInputChar()).thenReturn('d');
@@ -62,7 +62,7 @@ public class ControllerTest {
 		verify(mockView, times(1)).standardResultPrint(5.00);
 		verify(mockView, times(1)).waitToEnter();
 	}
-	
+
 	@Test
 	public void start_userChooseFirstDegreeEquationC_ShouldInvokeFirstDegreeEquationCThenViewTheResultAndReturnTrue() {
 		when(mockView.getUserInputChar()).thenReturn('f');
@@ -72,7 +72,7 @@ public class ControllerTest {
 		verify(mockView, times(1)).standardResultPrint(5.00);
 		verify(mockView, times(1)).waitToEnter();
 	}
-	
+
 	@Test
 	public void start_userChooseQuadraticEquatioC_ShouldInvokeQuadraticEquatioCThenViewTheResultAndReturnTrue() {
 		when(mockView.getUserInputChar()).thenReturn('q');
@@ -80,22 +80,22 @@ public class ControllerTest {
 		when(mockQec.getSolution1()).thenReturn(3.00);
 		when(mockQec.getSolution2()).thenReturn(-1.00);
 		doReturn(1.00).when(spySut).FirstDegreeEquationCalculator();
-		
-		//Case: two solutions
+
+		// Case: two solutions
 		assertTrue(spySut.start());
 		verify(mockView, times(1)).instructionPrint();
 		verify(mockView, times(1)).standardResultPrint(3.00);
 		verify(mockView, times(1)).standardResultPrint(-1.00);
 		verify(mockView, times(1)).waitToEnter();
-		
-		//Case: one solution
+
+		// Case: one solution
 		assertTrue(spySut.start());
 		verify(mockView, times(2)).instructionPrint();
 		verify(mockView, times(2)).standardResultPrint(3.00);
 		verify(mockView, times(1)).standardResultPrint(-1.00);
 		verify(mockView, times(2)).waitToEnter();
-		
-		//Case: no solution
+
+		// Case: no solution
 		assertTrue(spySut.start());
 		verify(mockView, times(3)).instructionPrint();
 		verify(mockView, times(2)).standardResultPrint(3.00);
@@ -103,7 +103,7 @@ public class ControllerTest {
 		verify(mockView, times(3)).waitToEnter();
 		verify(mockView, times(1)).printText("*****No Solution*****");
 	}
-	
+
 	@Test
 	public void start_userChooseToExit_ShouldReturnFalse() {
 		when(mockView.getUserInputChar()).thenReturn('e');
