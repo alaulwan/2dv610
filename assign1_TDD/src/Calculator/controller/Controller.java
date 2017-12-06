@@ -29,6 +29,10 @@ public class Controller {
 		this.QEC = QEC;
 		this.equation = equation;
 	}
+	
+	public boolean start() {
+		return false;
+	}
 
 	public double standardCalculator() {
 		view.standardInstructionDisplay();
