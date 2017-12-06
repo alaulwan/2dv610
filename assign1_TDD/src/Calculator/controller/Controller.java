@@ -5,17 +5,21 @@ import java.util.List;
 
 import Calculator.View.EnglishView;
 import Calculator.model.AdvancedCalculator;
+import Calculator.model.FirstDegreeEquationCalculator;
 import Calculator.model.StandardCalculator;
+import Calculator.model.exeption.NonFirstDegreeEquatioException;
 
 public class Controller {
 	private EnglishView view;
 	private StandardCalculator sc;
 	private AdvancedCalculator AC;
+	private FirstDegreeEquationCalculator FDC;
 
-	public Controller(EnglishView view, StandardCalculator sc, AdvancedCalculator ac) {
+	public Controller(EnglishView view, StandardCalculator sc, AdvancedCalculator ac, FirstDegreeEquationCalculator FDC) {
 		this.view = view;
 		this.sc = sc;
 		this.AC = ac;
+		this.FDC=FDC;
 	}
 
 	public double standardCalculator() {
@@ -98,6 +102,11 @@ public class Controller {
 		}
 
 		return result;
+	}
+	
+	public double FirstDegreeEquationCalculator() {
+		return 0;
+		
 	}
 
 	public double getNumberFromUser(int i) {

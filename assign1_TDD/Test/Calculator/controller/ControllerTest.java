@@ -16,18 +16,21 @@ import org.mockito.Mockito;
 
 import Calculator.View.EnglishView;
 import Calculator.model.AdvancedCalculator;
+import Calculator.model.FirstDegreeEquationCalculator;
 import Calculator.model.StandardCalculator;
+import Calculator.model.exeption.NonFirstDegreeEquatioException;
 
 public class ControllerTest {
 	private Controller sut;
 	EnglishView mockView = mock(EnglishView.class);
 	StandardCalculator mockSc = mock(StandardCalculator.class);
 	AdvancedCalculator mockAc = mock(AdvancedCalculator.class);
+	FirstDegreeEquationCalculator mockFdc = mock(FirstDegreeEquationCalculator.class);
 	Controller spySut;
 
 	@Before
 	public void setUp() throws Exception {
-		sut = new Controller(mockView, mockSc, mockAc);
+		sut = new Controller(mockView, mockSc, mockAc, mockFdc);
 		spySut = Mockito.spy(sut);
 	}
 
@@ -160,6 +163,39 @@ public class ControllerTest {
 			assertTrue(printTip(expected, actual), doublecomparision(expected, actual));
 		}
 
+	}
+	
+	@Test
+	public void FirstDegreeEquationCalculator_ShouldReturnResultOrCanceledByUser() throws NonFirstDegreeEquatioException {
+		// case1: Return result
+		doReturn(2.50).when(spySut).getNumberFromUser(1);
+		doReturn(-5.00).when(spySut).getNumberFromUser(2);
+		when(mockFdc.getSolution()).thenReturn(2.00);
+		double actual = sut.FirstDegreeEquationCalculator();
+		double expected = 2.00;
+		assertTrue(printTip(expected, actual), doublecomparision(expected, actual));
+		verify(mockView, times(1)).askToNumberOrOperation(1);
+		verify(mockView, times(1)).askToNumberOrOperation(2);
+		
+		// case2: Return exception
+				doReturn(0.00).when(spySut).getNumberFromUser(1);
+				doReturn(-5.00).when(spySut).getNumberFromUser(2);
+				when(mockFdc.getSolution()).thenThrow(NonFirstDegreeEquatioException.class);
+				actual = sut.FirstDegreeEquationCalculator();
+				expected = Double.MIN_VALUE;
+				assertTrue(printTip(expected, actual), doublecomparision(expected, actual));
+				verify(mockView, times(2)).askToNumberOrOperation(1);
+				verify(mockView, times(2)).askToNumberOrOperation(2);
+				verify(mockView, times(1)).printText("Error*****Non First Degree Equatio*****\n");
+				
+		// Case 3: the user inputs 'c' to cancel
+				doReturn(Double.MAX_VALUE).doReturn(5.00).doReturn(5.1).when(spySut).getNumberFromUser(1);
+				doReturn(Double.MAX_VALUE).when(spySut).getNumberFromUser(2);
+				for (int i = 0; i < 2; i++) {
+					actual = spySut.FirstDegreeEquationCalculator();
+					expected = Double.MIN_VALUE;
+					assertTrue(printTip(expected, actual), doublecomparision(expected, actual));
+				}
 	}
 
 	private boolean doublecomparision(double expected, double actual) {
