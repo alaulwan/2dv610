@@ -1,14 +1,23 @@
 package Calculator.controller;
 
+import java.util.Arrays;
 import java.util.List;
 
 import Calculator.View.EnglishView;
+import Calculator.model.StandardCalculator;
 
 public class Controller {
 	private EnglishView view;
+	private StandardCalculator sc;
 
-	public Controller(EnglishView view) {
+	public Controller(EnglishView view, StandardCalculator sc) {
 		this.view = view;
+		this.sc= sc;
+	}
+	
+	public double standardCalculator() {
+		return 0;
+		
 	}
 
 	public double getNumberFromUser(int i) {
