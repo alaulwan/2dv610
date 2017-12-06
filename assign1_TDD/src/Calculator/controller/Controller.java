@@ -66,7 +66,7 @@ public class Controller {
 		}
 		return result;
 	}
-	
+
 	public double advancedCalculator() {
 		view.advancedInstructionDisplay();
 		double result = Double.MIN_VALUE;
