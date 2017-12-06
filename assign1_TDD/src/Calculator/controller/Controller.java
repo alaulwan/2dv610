@@ -105,8 +105,27 @@ public class Controller {
 	}
 	
 	public double FirstDegreeEquationCalculator() {
-		return 0;
-		
+		double result = Double.MIN_VALUE;
+		double number1 = Double.MIN_VALUE;
+		double number2 = Double.MIN_VALUE;
+
+		number1 = getNumberFromUser(1);
+		if (number1 == Double.MAX_VALUE)
+			return Double.MIN_VALUE;
+
+		number2 = getNumberFromUser(2);
+		if (number2 == Double.MAX_VALUE)
+			return Double.MIN_VALUE;
+
+		FDC.setB(number1);
+		FDC.setC(number2);
+		try {
+			result = FDC.getSolution();
+		} catch (NonFirstDegreeEquatioException e) {
+			view.printText("Error*****Non First Degree Equatio*****\n");
+			return Double.MIN_VALUE;
+		}
+		return result;
 	}
 
 	public double getNumberFromUser(int i) {
